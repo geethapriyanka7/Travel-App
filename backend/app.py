@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '***'
+app.config['MYSQL_PASSWORD'] = "****"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 mysql = MySQL(app)
@@ -32,15 +32,19 @@ def index():
                 json_data.append(dict(zip(row_headers,result)))
         return json.dumps(json_data)
 
+
+
 @app.route("/a", methods = ['POST'])
 @cross_origin()
 def index1():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        print(data)
-        cmd = "call remove_owner('"+data['email']+"');"
+        print(data[0]["email"])
+        cmd = "call remove_owner('"+data[0]["email"]+"');"
+        print(cmd)
         cur.execute(cmd)
-        cur.fetchall()
+        mysql.connection.commit()
+        cur.close()
         print(cur.rowcount)
         return "!"
    

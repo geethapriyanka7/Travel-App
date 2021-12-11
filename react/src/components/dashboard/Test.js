@@ -3,9 +3,9 @@ import axios from 'axios'
 
 export default function Test() {
 
-    var myParams = {
+    var myParams = [{
         email: "jwayne@gmail.com"
-    }
+    }]
 
     if (myParams !== "") {
         axios.post('http://localhost:5000/a', myParams)
