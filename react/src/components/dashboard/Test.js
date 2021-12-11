@@ -7,7 +7,7 @@ export default function Test() {
         email: "jwayne@gmail.com"
     }
 
-    if (myParams != "") {
+    if (myParams !== "") {
         axios.post('http://localhost:5000/a', myParams)
             .then(function(response){
                 console.log(response);
@@ -21,7 +21,7 @@ export default function Test() {
 
     return (
         <div>
-            
+            Hello
             
 
         </div>

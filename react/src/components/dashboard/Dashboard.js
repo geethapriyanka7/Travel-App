@@ -12,7 +12,6 @@ function Dashboard() {
           const data = new Map(Object.entries(JSON.parse(text)));
           setData(data)
           console.log(data)
-        //   console.log(data)
           // Do your JSON handling here
       } catch(err) {
           console.log(err)
@@ -27,7 +26,8 @@ function Dashboard() {
     
     return (
         <div>
-  
+        
+     Hello World
         
 
         </div>
