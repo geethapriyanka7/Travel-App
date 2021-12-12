@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "****"
+app.config['MYSQL_PASSWORD'] = "Pri@12364"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 mysql = MySQL(app)
@@ -48,7 +48,7 @@ def index1():
         cur.close()
         return "!"
 
-@app.route("/view_airlines")
+@app.route("/val")
 @cross_origin()
 def index2():
         cur = mysql.connection.cursor()
@@ -93,7 +93,7 @@ def index4():
         cur.close()
         return json.dumps(json_data)
 
-@app.route("/view_flight")
+@app.route("/vf")
 @cross_origin()
 def index5():
         cur = mysql.connection.cursor()
@@ -108,7 +108,7 @@ def index5():
         cur.close()
         return json.dumps(json_data, default = str)
 
-@app.route("/view_owners")
+@app.route("/vo")
 @cross_origin()
 def index6():
         cur = mysql.connection.cursor()
