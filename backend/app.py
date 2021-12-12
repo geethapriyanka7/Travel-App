@@ -123,5 +123,36 @@ def index6():
         cur.close()
         return json.dumps(json_data)
 
+@app.route("/admins")
+@cross_origin()
+def index7():
+        cur = mysql.connection.cursor()
+        cmd = "select a.First_Name, a.Last_Name, a.Email, a.Pass from accounts a, admins o where a.Email = o.Email;"
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(dict(zip(row_headers, result)))
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data)
+
+@app.route("/clients")
+@cross_origin()
+def index8():
+        cur = mysql.connection.cursor()
+        cmd = "select a.First_Name, a.Last_Name, a.Email, a.Pass from accounts a, clients c where a.Email = c.Email;"
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(dict(zip(row_headers, result)))
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
