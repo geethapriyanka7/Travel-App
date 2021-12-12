@@ -8,6 +8,7 @@ import ViewOwn from './components/Owner/ViewOwn'
 import ViewAirl from './components/airlines/ViewAirl'
 import ViewFlights from './components/Flights/viewFlights'
 import OwnerHome from './components/Owner/OwnerHome'
+import DeleteOwner from './components/Owner/DeleteOwner'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/val" element={<ViewAirl/>}/>
           <Route path="/vf" element={<ViewFlights/>}/>
           <Route path="/oh" element={<OwnerHome/>}/>
+          <Route path="/do" element={<DeleteOwner/>}/>
         </Routes>
       </header>
     </div>
