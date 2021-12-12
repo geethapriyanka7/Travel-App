@@ -10,6 +10,7 @@ import ViewFlights from './components/Flights/viewFlights'
 import OwnerHome from './components/Owner/OwnerHome'
 import DeleteOwner from './components/Owner/DeleteOwner'
 import Mainlogin from './components/Login/MainLogin'
+import AdminHome from './components/Admin/AdminHome'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/oh" element={<OwnerHome/>}/>
           <Route path="/do" element={<DeleteOwner/>}/>
           <Route path="/l" element={<Mainlogin/>}/>
+          <Route path="/ah" element={<AdminHome/>}/>
         </Routes>
       </header>
     </div>
