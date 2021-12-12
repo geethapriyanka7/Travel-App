@@ -15,24 +15,31 @@ const Table = props => {
     console.log("RESOLVE AT:", gridData.updatedAt);
   }, [gridData]);
 
-
+console.log(gridData)
   return (
 
     <div>
     <Box
-    sx= {{ mt: 8, mx: "auto", width: 700 }} >
+    sx= {{ mt: 8, mx: "auto", width: 900 }} >
       <MaterialTable
-        title="View Customers"
+        title={props.heading}
         columns={gridData.columns}
         data={Array.from(props.data)}
         options={{
           pageSize: 5,
-          fontFamily: "Montserrat",
           headerStyle: {
             position: "sticky",
             top: "0"
           },
-          maxBodyHeight: "400px"
+          maxBodyHeight: "400px",
+          filtering: props.filter,
+          
+        }}
+
+        localization={{
+        toolbar: {
+          searchPlaceholder: props.pl,
+        },
         }}
       
       />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import Table from "../Customer/Table";
+import Table from "../Layout/Table";
 
 const comonscol = [
     { title: "ID", field: "flight_id" },

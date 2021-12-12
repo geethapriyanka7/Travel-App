@@ -9,6 +9,8 @@ import ViewAirl from './components/airlines/ViewAirl'
 import ViewFlights from './components/Flights/viewFlights'
 import OwnerHome from './components/Owner/OwnerHome'
 import DeleteOwner from './components/Owner/DeleteOwner'
+import ViewAp from './components/Airport/ViewAp';
+import LogAd from './components/Login/LogAd';
 
 function App() {
   return (
@@ -22,9 +24,11 @@ function App() {
           <Route path="/vc" element={<ViewCust/>}/>
           <Route path="/vo" element={<ViewOwn/>}/>
           <Route path="/val" element={<ViewAirl/>}/>
+          <Route path="/vap" element={<ViewAp/>}/>
           <Route path="/vf" element={<ViewFlights/>}/>
           <Route path="/oh" element={<OwnerHome/>}/>
           <Route path="/do" element={<DeleteOwner/>}/>
+          <Route path="/admins" element={<LogAd/>}/>
         </Routes>
       </header>
     </div>

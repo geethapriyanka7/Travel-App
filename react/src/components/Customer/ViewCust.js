@@ -1,12 +1,12 @@
 import React, { useEffect, useState} from 'react'
-import Table from "./Table";
+import Table from "../Layout/Table";
 
 const comonscol = [
-    { title: "Customer Name", field: "customer_name" },
-    { title: "Average Rating", field: "avg_rating" },
-    { title: "Location", field: "location" },
-    { title: "Is owner", field: "is_owner" },
-    { title: "Total Seats Purchased", field: "total_seats_purchased" }
+    { title: "Customer Name", field: "customer_name" , filtering: false },
+    { title: "Average Rating", field: "avg_rating", searchable : false , filtering: false },
+    { title: "Location", field: "location", searchable : false , filtering: false },
+    { title: "Is owner", field: "is_owner", searchable : false , filtering: false},
+    { title: "Total Seats Purchased", field: "total_seats_purchased" , searchable : false , filtering: false}
   ];
 
 function Dashboard() {
@@ -38,7 +38,7 @@ function Dashboard() {
     
     return (
         <div className='container'>
-      <Table col={comonscol} data={data} />
+      <Table col={comonscol} data={data} heading = "View Customers" pl = "Name" filter= {false} />
 
         </div>
     )
