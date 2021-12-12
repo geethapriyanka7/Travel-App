@@ -11,6 +11,9 @@ import OwnerHome from './components/Owner/OwnerHome'
 import DeleteOwner from './components/Owner/DeleteOwner'
 import ViewAp from './components/Airport/ViewAp';
 import LogAd from './components/Login/LogAd';
+import Mainlogin from './components/Login/MainLogin'
+import CreateAccountOwner from './components/Login/CreateAccountOwner'
+import CreateAccountCust from './components/Login/CreateAccountCust'
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
           <Route path="/oh" element={<OwnerHome/>}/>
           <Route path="/do" element={<DeleteOwner/>}/>
           <Route path="/admins" element={<LogAd/>}/>
+          <Route path="/l" element={<Mainlogin/>}/>
+          <Route path="/cao" element={<CreateAccountOwner/>}/>
+          <Route path="/cac" element={<CreateAccountCust/>}/>
         </Routes>
       </header>
     </div>
