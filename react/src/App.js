@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ViewCust from './components/Customer/ViewCust'
 import Test from './components/Customer/Test'
 import Navbar from './components/Layout/Navbar';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <header className="App-header">
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<ViewCust/>}/>
+          <Route exact path="/" element={<Dashboard/>}/>
           <Route path="/a" element={<Test/>}/>
           <Route path="/vc" element={<ViewCust/>}/>
         </Routes>
