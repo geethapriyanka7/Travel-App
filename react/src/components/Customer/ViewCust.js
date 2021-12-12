@@ -14,7 +14,7 @@ function Dashboard() {
     const [data,setData] = useState({})
 
     useEffect(() => {
-        fetch("http://localhost:5000/")
+        fetch("http://localhost:5000/vc")
     .then(response => response.text ())
     .then(text => {
       try {
