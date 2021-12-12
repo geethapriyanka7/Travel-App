@@ -9,10 +9,10 @@ export default function Test() {
         <body>
 
         <div  align="center">
-            <Button className='button' variant = 'text'>Welcome, Owner!</Button>
+            <Button className='bun' variant = 'text'>Welcome, Owner!</Button>
          </div>
         <div align="center">
-            <Button className='gig' variant='text'>Add Property</Button>
+            <Button className='gug' variant='text'>Add Property</Button>
         </div>
         <div align="center">
             <Button className='big' variant='text'>Remove Property</Button>

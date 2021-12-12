@@ -1,12 +1,12 @@
-import React from 'react'
-import Button from '@mui/material/Button';
-import './DeleteOwner.css';
+import React, {Component} from 'react'
+import Button from '@mui/material/Button'
+import "../Owner/DeleteOwner.css";
 
 
 export default function Test() {
 
     return (
-        <body>
+        <div>
 
         <div  align="center">
             <Button className='button' variant = 'text'>Delete Owner Account</Button>
@@ -20,7 +20,7 @@ export default function Test() {
             <Button className='gig' variant='text'>NO :D</Button>
         </div>
         
-        </body>
+        </div>
     )
 
 }
