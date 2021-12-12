@@ -25,7 +25,7 @@
 }
 .no{
     align-self: center;
-    top: 200px !important;
+    top: 150px !important;
     color: rgb(0, 0, 0) !important;
     padding: 15px 32px !important;
     text-align: center !important;
@@ -37,7 +37,7 @@
 }
 .reg{
     background-color: #000000 !important;
-    top: 200px !important;
+    top: 150px !important;
     border-radius: 20px  !important;
     color: rgb(223, 217, 217) !important;
     padding: 15px 32px !important;

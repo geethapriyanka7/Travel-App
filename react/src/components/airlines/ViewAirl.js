@@ -1,11 +1,11 @@
 import React, { useEffect, useState} from 'react'
-import Table from "../Customer/Table";
+import Table from "../Layout/Table";
 
 const comonscol = [
-    { title: "Name", field: "airline_name" },
-    { title: "Rating", field: "rating" },
-    { title: "Total Flights", field: "total_flights" },
-    { title: "Minimun Flight Cost", field: "min_flight_cost" }
+    { title: "Name", field: "airline_name" , filtering: false},
+    { title: "Rating", field: "rating" ,searchable : false, filtering: false},
+    { title: "Total Flights", field: "total_flights", searchable : false , filtering: false},
+    { title: "Minimun Flight Cost", field: "min_flight_cost", searchable : false , filtering: false}
   ];
 
   function Dashboard() {
@@ -18,8 +18,8 @@ const comonscol = [
     .then(text => {
       try {
           const data = JSON.parse(text);
-        //   {Array.isArray(data) && data.map(group => group.avg_rating === null ? group.avg_rating = 0 : group.avg_rating)}
-        //   {Array.isArray(data) && data.map(group => group.avg_property_rating === null ? group.avg_property_rating = 0 : group.avg_property_rating)}
+          {Array.isArray(data) && data.map(group => group.min_flight_cost = "$"+ (group.min_flight_cost))}
+
           setData(data)
           console.log(data)
           
@@ -37,7 +37,7 @@ const comonscol = [
     
     return (
         <div className='container'>
-      <Table col={comonscol} data={data} />
+      <Table col={comonscol} data={data} heading = "View Airlines" pl = "Airline Name" filter= {false} />
 
         </div>
     )
