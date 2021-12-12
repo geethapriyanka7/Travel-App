@@ -34,6 +34,8 @@ def index():
         cur.close()
         return json.dumps(json_data)
 
+
+
 @app.route("/a", methods = ['POST'])
 @cross_origin()
 def index1():
