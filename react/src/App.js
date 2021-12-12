@@ -1,16 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Dashboard from './components/dashboard/Dashboard'
-import Test from './components/dashboard/Test'
+import ViewCust from './components/Customer/ViewCust'
+import Test from './components/Customer/Test'
+import Navbar from './components/Layout/Navbar';
 
 function App() {
   return (
     <Router>
     <div className="App">
       <header className="App-header">
+        <Navbar />
         <Routes>
-          <Route exact path="/" element={<Dashboard/>}/>
+          <Route exact path="/" element={<ViewCust/>}/>
           <Route path="/a" element={<Test/>}/>
+          <Route path="/vc" element={<ViewCust/>}/>
         </Routes>
       </header>
     </div>
