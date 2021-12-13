@@ -2,13 +2,16 @@ import React, { useEffect, useState} from 'react'
 import Table from "../Layout/Table";
 
 const comonscol = [
-    { title: "ID", field: "flight_id" },
-    { title: "Airline", field: "airline" },
-    { title: "To", field: "destination" },
-    { title: "Date", field: "flight_date" },
-    { title: "Available seats", field: "num_empty_seats" },
-    { title: "Cost Per seat", field: "seat_cost" },
-    { title: "Total Spent", field: "total_spent" }
+    { title: "ID", field: "ID" ,searchable : false, filtering: false},
+    { title: "Airline", field: "Airlines",searchable : false, filtering: false },
+    { title: "From", field: "From_Airport",searchable : false, filtering: false},
+    { title: "To", field: "To_Airport",searchable : false, filtering: false},
+    { title: "Dept. Time", field: "Dept_Time",searchable : false, filtering: false },
+    { title: "Arr. Time", field: "Arr_Time",searchable : false, filtering: false },
+    { title: "Date", field: "Date",searchable : false, filtering: false },
+    { title: "Available seats", field: "Available_Seats", filtering: false },
+    { title: "Cost Per seat", field: "Cost_Per_Seat",searchable : false, filtering: false },
+    { title: "Total Spent", field: "Total_Spent",searchable : false, filtering: false }
   ];
 
   function Dashboard() {
@@ -16,7 +19,7 @@ const comonscol = [
     const [data,setData] = useState({})
 
     useEffect(() => {
-        fetch("http://localhost:5000/val")
+        fetch("http://localhost:5000/vf")
     .then(response => response.text ())
     .then(text => {
       try {
@@ -40,7 +43,7 @@ const comonscol = [
     
     return (
         <div className='container'>
-      <Table col={comonscol} data={data} />
+      <Table col={comonscol} data={data} heading = "View Flights" pl = "Available Seats" filter = {false}/>
 
         </div>
     )

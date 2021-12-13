@@ -13,6 +13,7 @@ import ViewAp from './components/Airport/ViewAp';
 import LogAd from './components/Login/LogAd';
 import Mainlogin from './components/Login/MainLogin'
 import AdminHome from './components/Admin/AdminHome'
+import ViewProp from './components/Properties/ViewProp'
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/admins" element={<LogAd/>}/>
           <Route path="/l" element={<Mainlogin/>}/>
           <Route path="/ah" element={<AdminHome/>}/>
+          <Route path="/vp" element={<ViewProp/>}/>
         </Routes>
       </header>
     </div>
