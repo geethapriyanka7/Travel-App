@@ -17,7 +17,9 @@ import CustomerHome from './components/Customer/CustomerHome'
 import AdminProcessDate from './components/Admin/AdminProcessDate'
 import ScheduleFlight from './components/Flights/ScheduleFlight'
 import AddProp from './components/Owner/AddProp'
-
+import CreateAccountCust from './components/Login/CreateAccountCust'
+import CreateAccountOwner from './components/Login/CreateAccountOwner'
+import ViewProp from './components/Properties/ViewProp'
 function App() {
   return (
     <Router>
@@ -41,6 +43,9 @@ function App() {
           <Route path="/apd" element={<AdminProcessDate/>}/>
           <Route path="/sf" element={<ScheduleFlight/>}/>
           <Route path="/ap" element={<AddProp/>}/>
+          <Route path="/cac" element={<CreateAccountCust/>}/>
+          <Route path="/cao" element={<CreateAccountOwner/>}/>
+          <Route path="/vp" element={<ViewProp/>}/>
         </Routes>
       </header>
     </div>
