@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ViewCust from './components/Customer/ViewCust'
 import Test from './components/Customer/Test'
-import Navbar from './components/Layout/Navbar';
+// import Navbar from './components/Layout/Navbar';
 import Dashboard from './components/Dashboard/Dashboard';
 import ViewOwn from './components/Owner/ViewOwn'
 import ViewAirl from './components/airlines/ViewAirl'
@@ -25,7 +25,6 @@ function App() {
     <Router>
     <div className="App">
       <header className="App-header">
-        <Navbar />
         <Routes>
           <Route exact path="/" element={<Dashboard/>}/>
           <Route path="/a" element={<Test/>}/>
@@ -38,7 +37,7 @@ function App() {
           <Route path="/do" element={<DeleteOwner/>}/>
           <Route path="/admins" element={<LogAd/>}/>
           <Route path="/l" element={<Mainlogin/>}/>
-          <Route path="/ah" element={<AdminHome/>}/>
+          <Route path="/ah/:id" element={<AdminHome/>}/>
           <Route path="/ch" element={<CustomerHome/>}/>
           <Route path="/apd" element={<AdminProcessDate/>}/>
           <Route path="/sf" element={<ScheduleFlight/>}/>

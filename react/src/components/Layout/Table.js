@@ -20,7 +20,7 @@ const Table = props => {
 
     <div>
     <Box
-    sx= {{ mt: 8, mx: "auto", width: 900 }} >
+    sx= {{ mt: 8, mx: "auto", width: 1000 }} >
       <MaterialTable
         title={props.heading}
         columns={gridData.columns}

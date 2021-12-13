@@ -1,13 +1,18 @@
 import React, {Component} from 'react'
 import Button from '@mui/material/Button'
 import '../Admin/AdminHome.css';
+import { useLocation } from 'react-router-dom';
+import Navbar from '../Layout/Navbar';
 
-export default function Test() {
-
+export default function AdminHome () {
+    const email = useLocation().state.email
+    console.log(email)
+    
     return (
+       
         <div>
-
-        <div  align="center">
+        <Navbar email = {email}/>
+        <div  align="center" style={{ marginTop: '5%'}}>
             <Button className='log' variant = 'text'><b>Admin Home</b></Button>
         </div>
         
