@@ -4,7 +4,9 @@ from flask_mysqldb import MySQL
 import os
 import simplejson as json
 from flask_cors import CORS, cross_origin
+from datetime import date
 
+time = date.today()
 
 # print(os.path.dirname(__file__)+"/")
 
@@ -14,7 +16,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "root"
+app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 mysql = MySQL(app)
@@ -26,13 +28,12 @@ def index():
         cmd = "select * FROM travel_reservation_service.view_customers;"
         cur.execute(cmd)
         row_headers=[x[0] for x in cur.description] #this will extract row headers
-        rv = cur.fetchall()
-        json_data=[]
+        rv = cur.fetchall()        
         for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
         mysql.connection.commit()
         cur.close()
-        return json.dumps(json_data)
+        return json.dumps(json_data, default = str)
 
 
 @app.route("/remove_owner", methods = ['POST'])
@@ -171,6 +172,8 @@ def display_remove_flight():
         data = request.get_json()
         cmd = "select Flight_Num, Airline_Name, Flight_Date from flight where Flight_Date between '"+data[0]['from_date']+"' and '"+data[0]['to_date']+"';"
         cur.execute(cmd)
+        x, json_data = {'time': time}, []
+        json_data.append(x)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
         json_data = []
@@ -258,8 +261,10 @@ def index14():
 def view_cancel_flight():
         cur = mysql.connection.cursor()
         login_data = request.get_json()
-        cmd = "select * from flight f right join book b on (f.Airline_Name, f.Flight_Num)=(b.Airline_Name, b.Flight_Num) where b.Customer = '"+data[0]['customer_email']+'';"
+        cmd = "select * from flight f right join book b on (f.Airline_Name, f.Flight_Num)=(b.Airline_Name, b.Flight_Num) where b.Customer = '"+data[0]['customer_email']+"';"
         cur.execute(cmd)
+        x, json_data = {'time': time}, []
+        json_data.append(x)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
         json_data = []
@@ -282,6 +287,21 @@ def index15():
 
 @app.route("/reserve_property")
 @cross_origin()
+def view_reserve():
+        cur = mysql.connection.cursor()
+        cmd = "select property_name, owner_email, capacity from property;"
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        x, json_data = {'time': time}, []
+        json_data.append(x)
+        for result in rv:
+                json_data.append(dict(zip(result, row_headers)))
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data)
+
+@cross_origin()
 def index16():
         cur = mysql.connection.cursor()
         data = request.get_json()
@@ -294,6 +314,21 @@ def index16():
 
 @app.route("/cancel_property_reservation")
 @cross_origin()
+def view_cancel_rp():
+        cur = mysql.connection.cursor()
+        cmd = ""
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        x, json_data = {'time': time}, []
+        json_data.append(x)
+        for result in rv:
+                json_data.append(dict(zip(result, row_headers)))
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data)
+
+@cross_origin()
 def index17():
         cur = mysql.connection.cursor()
         data = request.get_json()
@@ -305,6 +340,17 @@ def index17():
         return None
 
 @app.route("/customer_review_property")
+@cross_origin()
+def view_review_property():
+        cur = mysql.connection.cursor()
+        data = request.get_json()
+        cmd = ""
+        cur.execute(cmd)
+        #cur.fetchall()
+        mysql.connection.commit()
+        cur.close()
+        return None
+
 @cross_origin()
 def index18():
         cur = mysql.connection.cursor()
