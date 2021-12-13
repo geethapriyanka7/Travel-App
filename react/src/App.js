@@ -20,6 +20,8 @@ import AddProp from './components/Owner/AddProp'
 import CreateAccountCust from './components/Login/CreateAccountCust'
 import CreateAccountOwner from './components/Login/CreateAccountOwner'
 import ViewProp from './components/Properties/ViewProp'
+import RemoveFlights from "./components/Flights/RemoveFlights"
+
 function App() {
   return (
     <Router>
@@ -45,6 +47,7 @@ function App() {
           <Route path="/cac" element={<CreateAccountCust/>}/>
           <Route path="/cao" element={<CreateAccountOwner/>}/>
           <Route path="/vp" element={<ViewProp/>}/>
+          <Route path="/rf" element={<RemoveFlights/>}/>
         </Routes>
       </header>
     </div>

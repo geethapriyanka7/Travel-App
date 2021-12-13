@@ -5,7 +5,6 @@ import os
 import simplejson as json
 from flask_cors import CORS, cross_origin
 
-
 # print(os.path.dirname(__file__)+"/")
 
 app = Flask(__name__)
@@ -14,8 +13,9 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "root"
+app.config['MYSQL_PASSWORD'] = "****"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
+
 
 mysql = MySQL(app)
 
@@ -164,12 +164,12 @@ def index9():
         cur.close()
         return None
 
-@app.route("/remove_flight")
+
+@app.route("/rf")
 @cross_origin()
-def display_remove_flight():
+def indexrf():
         cur = mysql.connection.cursor()
-        data = request.get_json()
-        cmd = "select Flight_Num, Airline_Name, Flight_Date from flight where Flight_Date between '"+data[0]['from_date']+"' and '"+data[0]['to_date']+"';"
+        cmd = "SELECT airline, flight_id, flight_date FROM travel_reservation_service.view_flight;"
         cur.execute(cmd)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
@@ -178,7 +178,36 @@ def display_remove_flight():
                 json_data.append(dict(zip(row_headers, result)))
         mysql.connection.commit()
         cur.close()
-        return json.dumps(json_data)
+        return json.dumps(json_data, default = str)
+
+@app.route("/rf", methods = ['POST'])
+@cross_origin()
+def indexrf1():
+        cur = mysql.connection.cursor()
+        data = request.get_json()
+        print(data['airline'],data['flight_id'], data['flight_date'])
+        cmd = "call remove_flight('"+(data['flight_id'])+"','"+ (data['airline'])+"','"+(data['flight_date'])+"');"
+        cur.execute(cmd)
+        cur.fetchall()
+        mysql.connection.commit()
+        cur.close()
+        return "!"
+
+# @app.route("/remove_flight")
+# @cross_origin()
+# def display_remove_flight():
+#         cur = mysql.connection.cursor()
+#         data = request.get_json()
+#         cmd = "select Flight_Num, Airline_Name, Flight_Date from flight where Flight_Date between '"+data[0]['from_date']+"' and '"+data[0]['to_date']+"';"
+#         cur.execute(cmd)
+#         row_headers = [x[0] for x in cur.description]
+#         rv = cur.fetchall()
+#         json_data = []
+#         for result in rv:
+#                 json_data.append(dict(zip(row_headers, result)))
+#         mysql.connection.commit()
+#         cur.close()
+#         return json.dumps(json_data)
 
 @cross_origin()
 def index10():
@@ -258,7 +287,7 @@ def index14():
 def view_cancel_flight():
         cur = mysql.connection.cursor()
         login_data = request.get_json()
-        cmd = "select * from flight f right join book b on (f.Airline_Name, f.Flight_Num)=(b.Airline_Name, b.Flight_Num) where b.Customer = '"+data[0]['customer_email']+'';"
+        cmd = "select * from flight f right join book b on (f.Airline_Name, f.Flight_Num)=(b.Airline_Name, b.Flight_Num) where b.Customer = '"+data[0]['customer_email']+"';"
         cur.execute(cmd)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
