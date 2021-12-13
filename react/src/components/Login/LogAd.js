@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     const [password, setPassword] = useState('');
   
     const handleSubmit = e => {
-    //   e.preventDefault();    
+      e.preventDefault();    
       console.log(firstName, lastName, email, password);
     };
   

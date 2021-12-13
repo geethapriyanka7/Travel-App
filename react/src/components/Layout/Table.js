@@ -15,7 +15,7 @@ const Table = props => {
     console.log("RESOLVE AT:", gridData.updatedAt);
   }, [gridData]);
 
-console.log(gridData)
+// console.log(gridData)
   return (
 
     <div>

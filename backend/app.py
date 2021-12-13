@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "Pri@12364"
+app.config['MYSQL_PASSWORD'] = "root"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 mysql = MySQL(app)
@@ -63,11 +63,11 @@ def index2():
         cur.close()
         return json.dumps(json_data)
 
-@app.route("/view_airports")
+@app.route("/vap")
 @cross_origin()
 def index3():
         cur = mysql.connection.cursor()
-        cmd = "select * from travel_reservation_service.view_airports;"
+        cmd = "select Airport_ID as ID, Airport_Name, Time_Zone, concat(Street,', ', City,', ', State,', ', Zip) as address from airport;"
         cur.execute(cmd)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()

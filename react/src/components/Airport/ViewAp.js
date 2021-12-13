@@ -4,7 +4,7 @@ import Table from "../Layout/Table";
 const comonscol = [
     { title: "ID", field: "ID" , filtering: false },
     { title: "Name", field: "Airport_Name" , searchable : false, filtering: false },
-    { title: "Time Zone", field: "Time_zone" , searchable : false, lookup: {0:'EST', 1:'CST', 2:'PST'}},
+    { title: "Time Zone", field: "Time_Zone" , searchable : false, lookup: {0:'EST', 1:'CST', 2:'PST'}},
     { title: "Address", field: "address" , searchable : false, filtering: false  }
   ];
 
@@ -21,11 +21,13 @@ export default function ViewAp() {
       try {
           const data = JSON.parse(text)
           var tz = new Set()
+          
+          {Array.isArray(data) && data.map(group =>  tz.add(group.Time_Zone))}
 
-          {Array.isArray(data) && data.map(group =>  tz.add(group.Time_zone))}
-          tz = [...tz]          
-          {Array.isArray(data) && data.map(group => group.Time_zone = tz.indexOf(group.Time_zone))}
-        
+          tz = [...tz]    
+               
+          {Array.isArray(data) && data.map(group => group.Time_Zone = tz.indexOf(group.Time_Zone))}
+    
           setData(data)
 
           
