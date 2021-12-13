@@ -35,7 +35,6 @@ def index():
         return json.dumps(json_data)
 
 
-
 @app.route("/remove_owner", methods = ['POST'])
 @cross_origin()
 def index1():
@@ -167,10 +166,25 @@ def index9():
 
 @app.route("/remove_flight")
 @cross_origin()
+def display_remove_flight():
+        cur = mysql.connection.cursor()
+        data = request.get_json()
+        cmd = "select Flight_Num, Airline_Name, Flight_Date from flight where Flight_Date between '"+data[0]['from_date']+"' and '"+data[0]['to_date']+"';"
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(dict(zip(row_headers, result)))
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data)
+
+@cross_origin()
 def index10():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call remove_flight('"+data[0]['flight_num']+"', '"+data[0]['airline_name']+"', '"+data[0]['current_data']+"');"
+        cmd = "call remove_flight('"+data[0]['flight_num']+"', '"+data[0]['airline_name']+"', '"+data[0]['current_date']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
@@ -215,10 +229,24 @@ def index13():
 
 @app.route("/book_flight")
 @cross_origin()
+def view_book_flight():
+        cur = mysql.connection.cursor()
+        cmd = "select flight_id, airline, num_empty_seats from view_flight;"
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(result)
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data)
+
+@cross_origin()
 def index14():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call book_flight('"+data[0]['email']+"', '"+data[0]['flight_nu,']+"', '"+data[0]['airline_name']+"', '"+data[0]['num_seats']+"', '"+data[0]['current_date']+"');"
+        cmd = "call book_flight('"+data[0]['email']+"', '"+data[0]['flight_num']+"', '"+data[0]['airline_name']+"', '"+data[0]['num_seats']+"', '"+data[0]['current_date']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
@@ -226,6 +254,21 @@ def index14():
         return None  
 
 @app.route("/cancel_flight")
+@cross_origin()
+def view_cancel_flight():
+        cur = mysql.connection.cursor()
+        login_data = request.get_json()
+        cmd = "select * from flight f right join book b on (f.Airline_Name, f.Flight_Num)=(b.Airline_Name, b.Flight_Num) where b.Customer = '"+data[0]['customer_email']+'';"
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(result)
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data)
+
 @cross_origin()
 def index15():
         cur = mysql.connection.cursor()
