@@ -177,7 +177,7 @@ def index10():
         cur.close()
         return None
 
-@app.route("/sf")
+@app.route("/schedule_flight")
 @cross_origin()
 def index11():
         cur = mysql.connection.cursor()
