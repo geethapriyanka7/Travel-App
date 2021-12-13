@@ -1,0 +1,25 @@
+.ap{
+    align-self: center;
+    color: rgb(0, 0, 0) !important;
+    padding: 15px 32px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 20px !important;
+    margin: 4px 2px !important;
+    cursor: pointer !important; 
+}
+.ac{
+    background-color: #000000 !important;
+    top: 90px !important;
+    border: none !important;
+    color: rgb(223, 217, 217) !important;
+    border-radius: 20px  !important;
+    padding: 15px 32px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 15px !important;
+    margin: 4px 2px !important;
+    cursor: pointer !important; 
+}

@@ -153,7 +153,7 @@ def index8():
         cur.close()
         return json.dumps(json_data)
 
-@app.route("/admin_process_date")
+@app.route("/apd")
 @cross_origin()
 def index9():
         cur = mysql.connection.cursor()

@@ -13,6 +13,8 @@ import ViewAp from './components/Airport/ViewAp';
 import LogAd from './components/Login/LogAd';
 import Mainlogin from './components/Login/MainLogin'
 import AdminHome from './components/Admin/AdminHome'
+import CustomerHome from './components/Customer/CustomerHome'
+import AdminProcessDate from './components/Admin/AdminProcessDate'
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
           <Route path="/admins" element={<LogAd/>}/>
           <Route path="/l" element={<Mainlogin/>}/>
           <Route path="/ah" element={<AdminHome/>}/>
+          <Route path="/ch" element={<CustomerHome/>}/>
+          <Route path="/apd" element={<AdminProcessDate/>}/>
         </Routes>
       </header>
     </div>
