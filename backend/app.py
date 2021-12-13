@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
+app.config['MYSQL_PASSWORD'] = "Pri@12364"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 mysql = MySQL(app)
@@ -78,7 +78,7 @@ def index3():
         cur.close()
         return json.dumps(json_data)
 
-@app.route("/view_properties")
+@app.route("/vp")
 @cross_origin()
 def index4():
         cur = mysql.connection.cursor()
@@ -182,7 +182,7 @@ def index10():
 def index11():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call schedule_flight('"+data[0]['flight_num']+"', '"+data[0]['airline_name']+"', '"+data[0]['from_airport']+"', '"+data[0]['departure_time']+"', '"+data[0]+['arrival_time']"', '"+data[0]['flight_date']+"', '"+data[0]['cost']+"', '"+data[0]['capacity']+"', '"+data[0]['current_date']+"');"
+        cmd = "call schedule_flight('"+data[0]['flight_num']+"', '"+data[0]['airline_name']+"', '"+data[0]['from_airport']+"', '"+data[0]['departure_time']+"', '"+data[0]['arrival_time']+"', '"+data[0]['flight_date']+"', '"+data[0]['cost']+"', '"+data[0]['capacity']+"', '"+data[0]['current_date']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()        
