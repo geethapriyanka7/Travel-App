@@ -15,6 +15,8 @@ import Mainlogin from './components/Login/MainLogin'
 import AdminHome from './components/Admin/AdminHome'
 import CustomerHome from './components/Customer/CustomerHome'
 import AdminProcessDate from './components/Admin/AdminProcessDate'
+import ScheduleFlight from './components/Flights/ScheduleFlight'
+import AddProp from './components/Owner/AddProp'
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
           <Route path="/ah" element={<AdminHome/>}/>
           <Route path="/ch" element={<CustomerHome/>}/>
           <Route path="/apd" element={<AdminProcessDate/>}/>
+          <Route path="/sf" element={<ScheduleFlight/>}/>
+          <Route path="/ap" element={<AddProp/>}/>
         </Routes>
       </header>
     </div>
