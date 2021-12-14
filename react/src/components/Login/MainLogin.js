@@ -3,13 +3,15 @@ import Button from '@mui/material/Button'
 import './MainLogin.css'
 import TextField from '@mui/material/TextField'
 import { Box } from '@material-ui/core';
+import { useLocation } from 'react-router-dom';
+import Navbar from '../Layout/Navbar';
 
 export default function Test() {
 
     return (
-        <div>
+        <div> <Navbar />
 
-        <div  align="center">
+        <div  align="center" style={{ marginTop: '5%'}}>
             <Button className='log' variant = 'text'><b>Login</b></Button>
         </div>
         
