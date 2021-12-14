@@ -1,10 +1,13 @@
-import React, { useEffect, useState} from 'react'
-import { makeStyles } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import {Navigate } from 'react-router-dom';
+import React, {Component, useEffect, useState} from 'react'
+import Button from '@mui/material/Button'
+import './MainLogin.css'
+import TextField from '@mui/material/TextField'
+import { Box } from '@material-ui/core';
+import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/Navbar';
-// import { useNavigate  } from "react-router-dom";
+import {Link} from 'react-router-dom'
+import {Navigate } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,11 +27,8 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-
   const Form = ({ handleClose }) => {
-
     const classes = useStyles();
-    // create state variables for each input
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [data,setData] = useState({})
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     const [passerror,setPas] = useState()
     
     useEffect(() => {
-        fetch("http://localhost:5000/admins")
+        fetch("http://localhost:5000/l")
     .then(response => response.text ())
     .then(text => {
       try {
@@ -54,10 +54,9 @@ const useStyles = makeStyles(theme => ({
 
     },[])
 
+
     function handleSubmit(e) { 
       e.preventDefault()
-
-
       setPas(); setEm();
       console.log(email, password);
 
@@ -73,16 +72,18 @@ const useStyles = makeStyles(theme => ({
       setEm(emer)
       setPas(pser)
     };
-
   
-    if(passerror === false) return <Navigate  to ={'/ah/'+email} state={{ email: email }}  />
+    // if(passerror === false) return <Navigate  to ={'/l/'+email} state={{ email: email }}  />
+
+
 
     return (
-      <div>
-         <Navbar email = {null}/>
-        <br></br><br></br> <br></br><br></br><br></br><br></br><br></br>
-        <h2 align="center">ADMIN LOGIN</h2>
-      <form className={classes.root} onSubmit={handleSubmit}>
+        <div> <Navbar email = {null}/>
+
+        <div  align="center" style={{ marginTop: '7%'}}>
+            <h1><b>Customer Login</b></h1>
+        </div>
+        <form className={classes.root} onSubmit={handleSubmit}>
         <TextField
           label="Email"
           variant="filled"
@@ -105,20 +106,22 @@ const useStyles = makeStyles(theme => ({
           <h2></h2> }
           
         </div>
-        <div>
-          {/* <Button variant="contained" onClick={handleClose}>
-            Cancel
-          </Button> */}
-          <Button type="submit" style={{ background: '#2E3B55', color: "white", width: "80%"}}>
+        <div align = "center">
+        <Button type="submit" style={{ background: '#2E3B55', color: "white", width: "80%"}}>
             Log IN
           </Button>
         </div>
-        
-      </form>
-      </div>
-    );
-  };
-  
-  export default Form;
+        </form>
+        <div  align="center" style={{marginTop:"5%"}}>
+            <h3><b>Not Signed Up?</b></h3>
+        </div>
+        <div  align="center">
+            {/* <Link to="/cao"><Button className='reg' variant = 'text'>Create Account as Owner</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
+            <Link to="/cac"><Button className='reg' variant='text'>Create Account as Customer</Button></Link>
+        </div>
+    
+        </div>
+        );
+    };
 
-  
+export default Form;

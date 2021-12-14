@@ -5,6 +5,7 @@ import { Box } from '@material-ui/core';
 import './CreateAccountOwner.css'
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/Navbar';
+import {Link} from 'react-router-dom'
 
 export default function Register(){
     const [value, setValue] = React.useState(0);
@@ -13,9 +14,9 @@ export default function Register(){
     setValue(newValue);
   };
     return (
-        <div> <Navbar />
-            <div  align="center" style={{ marginTop: '5%'}}>
-            <h1>Register as Owner</h1>
+        <div> <Navbar email = {null}/>
+            <div  align="center" style={{ marginTop: '6%'}}>
+            <h2>Register as Owner</h2>
             </div>
             <Box
                 align="center"
@@ -39,11 +40,11 @@ export default function Register(){
                 <TextField id="filled-basic" label="Phone Number" variant="filled" />
                 <br></br>
             </Box>
+
             <div align = "center">
-            <Button className='bb' variant = 'text'><b>Create Account</b></Button>  
-            </div>
-            <div align = "center">
-            <Button className='ac' variant='text'>Back</Button>  
+            <br></br>
+                <Link to="/l"><Button className='reg' variant='text'>Back</Button></Link> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Button className='reg' variant = 'text'><b>Create Account</b></Button>  
             </div>
         </div>
         

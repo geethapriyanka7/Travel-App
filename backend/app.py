@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "***"
+app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
@@ -139,7 +139,7 @@ def index7():
         cur.close()
         return json.dumps(json_data)
 
-@app.route("/clients")
+@app.route("/l")
 @cross_origin()
 def index8():
         cur = mysql.connection.cursor()
