@@ -25,7 +25,7 @@ mysql = MySQL(app)
 @cross_origin()
 def view_cust():
         cur = mysql.connection.cursor()
-        cmd = "select email from customer;"
+        cmd = "select a.First_Name, a.Last_Name, a.Email, a.Pass from accounts a, customer c where a.Email = c.Email;"
         cur.execute(cmd)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
@@ -40,7 +40,7 @@ def view_cust():
 @cross_origin()
 def view_own():
         cur = mysql.connection.cursor()
-        cmd = "select * from travel_reservation_service.view_owners;"
+        cmd = "select a.First_Name, a.Last_Name, a.Email, a.Pass from accounts a, owners o where a.Email = o.Email;"
         cur.execute(cmd)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
@@ -169,7 +169,7 @@ def index7():
         cur.close()
         return json.dumps(json_data)
 
-@app.route("/l")
+@app.route("/clients")
 @cross_origin()
 def index8():
         cur = mysql.connection.cursor()
@@ -317,7 +317,7 @@ def index14():
         cur.close()
         return None  
 
-@app.route("/cf")
+@app.route("/cf", methods=["POST"])
 @cross_origin()
 def view_cancel_flight():
         cur = mysql.connection.cursor()
