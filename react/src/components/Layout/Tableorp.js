@@ -3,6 +3,7 @@ import MaterialTable from "material-table";
 import Box from '@mui/material/Box';
 import { Button } from "@material-ui/core";
 import axios from 'axios';
+import {Link, Navigate} from 'react-router-dom'
 
 const Table2 = props => {
   const [gridData] = useState({
@@ -12,12 +13,15 @@ const Table2 = props => {
     updatedAt: new Date()
   });
 
+  const email = props.email
+
   useEffect(() => {
     gridData.resolve();
     console.log("RESOLVE AT:", gridData.updatedAt);
   }, [gridData]);
 
   const [selectedRow, setSelectedRow] = useState(null);
+  const [done, setDone] = useState(null);
 
   const handleSubmit = e => {
       setSelectedRow(e)
@@ -34,16 +38,23 @@ const Table2 = props => {
         axios.post('http://localhost:5000/orp', myParams)
             .then(function(response){
                 console.log(response);
+                setDone(1)
        //Perform action based on response
+        
         })
         .catch(function(error){
             console.log(error);
        //Perform action based on error
         });
     }
+
+ 
+
+   
     
 };
 
+if(done !== null) return <Navigate  to ={'/oh/'+email} state={{ email: email }}  />
 
   return (
 
@@ -79,7 +90,11 @@ const Table2 = props => {
       </Box>
       <div align="center"> 
       {(selectedRow !== null)?
-      <Button type="submit" onClick={() => { handleDB() }} style={{ background: '#2E3B55', color: "white", width: "10%", marginTop:"2%"}}>Remove</Button>: <h1></h1>}
+           <Button type="submit" onClick={() => { handleDB() }} 
+           style={{ background: '#2E3B55', color: "white", width: "10%", marginTop:"2%"}}>
+               Remove</Button>: 
+               <h1></h1>}
+      
       </div>
       </div> 
 

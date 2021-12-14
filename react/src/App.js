@@ -31,6 +31,7 @@ import RateOwner from './components/Customer/RateOwner'
 import ViewPropRes from './components/Properties/ViewPropRes'
 import OwnerRemProp from './components/Owner/OwnerRemProp'
 import RateCust from './components/Owner/RateCust'
+import InputProp from './components/Properties/InputProp';
 
 function App() {
   return (
@@ -52,12 +53,13 @@ function App() {
           <Route path="/owner" element={<Owner/>}/>
           <Route path="/ah/:id" element={<AdminHome/>}/>
           <Route path="/ch/:id" element={<CustomerHome/>}/>
-          <Route path="/apd" element={<AdminProcessDate/>}/>
+          <Route path="inp/:id" element={<InputProp/>} />
+          <Route path="/apd/:id" element={<AdminProcessDate/>}/>
           <Route path="/sf" element={<ScheduleFlight/>}/>
           <Route path="/ap/:id" element={<AddProp/>}/>
           <Route path="/cac" element={<CreateAccountCust/>}/>
           <Route path="/cao" element={<CreateAccountOwner/>}/>
-          <Route path="/vp" element={<ViewProp/>}/>
+          <Route path="/vp/:id" element={<ViewProp/>}/>
           <Route path="/rf" element={<RemoveFlights/>}/>
           <Route path="/cf" element={<CancelFlight/>}/>
           <Route path="/bf" element={<BookFlight/>}/>
@@ -65,7 +67,7 @@ function App() {
           <Route path="/ccp" element={<CancelProp/>}/>
           <Route path="/crp" element={<ReviewProp/>}/>
           <Route path="/cro" element={<RateOwner/>}/>
-          <Route path="/vpr" element={<ViewPropRes/>}/>
+          <Route path="/vpr/:id" element={<ViewPropRes/>}/>
           <Route path="/orp/:id" element={<OwnerRemProp/>}/>
           <Route path="/orc" element={<RateCust/>}/>
         </Routes>

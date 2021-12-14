@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "@"
+app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
@@ -459,13 +459,23 @@ def index19():
 
 @app.route("/vpr", methods = ["POST"])
 @cross_origin()
-def index20():
+def index200():
         cur = mysql.connection.cursor()
-        cur2 = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call view_individual_property_reservations('"+data['owner_email']+"', '"+data['property_name']+"');"
+        cmd = "call view_individual_property_reservations('"+data['property_name']+"', '"+data['owner_email']+"');"
         cur.execute(cmd)
-        cmd2 = "select Property_Name, Start_Date, End_Date, Customer_Phone_num, Customer_Email, Table_Booking_Cost, Review, Rating_Score from view_individual_property_reservations;"
+        cur.fetchall()
+        mysql.connection.commit()
+        cur.close()
+        return str(cur.rowcount)
+
+
+@app.route("/vpr")
+@cross_origin()
+def index20():
+        
+        cur2 = mysql.connection.cursor()
+        cmd2 = "select Property_Name, Start_Date, End_Date, Customer_Phone_num, Customer_Email, Total_Booking_Cost, Review, Rating_Score from view_individual_property_reservations;"
         cur2.execute(cmd2)
         row_headers = [x[0] for x in cur2.description]
         rv = cur2.fetchall()
@@ -473,8 +483,8 @@ def index20():
         for result in rv:
                 json_data.append(dict(zip(row_headers, result)))
         mysql.connection.commit()
-        cur.close()
-        return json.dumps(json_data)
+        cur2.close()
+        return json.dumps(json_data, default = str)
 
 @app.route("/owner_add_property", methods = ["POST"])
 @cross_origin()
@@ -510,10 +520,8 @@ def view_remove_property():
 def index22():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        t='2021-10-18'
         # print(data)
-        cmd = "call remove_property('"+data['Property_Name']+"', '"+data['Owner_Email']+"','"+str(t)+"');"
-        print(t)
+        cmd = "call remove_property('"+data['Property_Name']+"', '"+data['Owner_Email']+"','"+str(time)+"');"
         # print(cmd)
         cur.execute(cmd)
         #cur.fetchall()

@@ -6,10 +6,32 @@ import './CreateAccountOwner.css'
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/Navbar';
 import {Link} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core';
+
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: theme.spacing(2),
+  
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '300px',
+      },
+      '& .MuiButtonBase-root': {
+        margin: theme.spacing(2),
+      },
+    },
+  }));
+
 
 export default function Register(){
     const [value, setValue] = React.useState(0);
-
+    
+    const classes = useStyles();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -17,42 +39,29 @@ export default function Register(){
         <div> <Navbar email = {null}/>
             <div  align="center" style={{ marginTop: '6%'}}>
             <h2>Register as Customer</h2>
-            </div>
-            <Box
-                align="center"
-                component="form"
-                sx={{
-                    '& > :not(style)': { m: 1, width: '40ch' },
-                }}
-                noValidate
-                autoComplete="off"
-                >
-                <TextField id="filled-basic" label="First Name" variant="filled" />
-                <br></br>
+        
+
+                <form className={classes.root} >
+                <TextField id="filled-basic" label="First Name" variant="filled" type="text"/>
                 <TextField id="filled-basic" label="Last Name" variant="filled" />
-                <br></br>
-                <TextField id="filled-basic" label="Email" variant="filled" />
-                <br></br>
-                <TextField id="filled-basic" label="Password" variant="filled" />
-                <br></br>
+                <TextField id="filled-basic" label="Email" variant="filled" type="email" required/>
+                <TextField id="filled-basic" label="Password" variant="filled" type="password" />
                 <TextField id="filled-basic" label="Confirm" variant="filled" />
-                <br></br>
                 <TextField id="filled-basic" label="Phone Number" variant="filled" />
-                <br></br>
                 <TextField id="filled-basic" label="Card Number" variant="filled" />
-                <br></br>
-                <TextField id="filled-basic" label="CVV" variant="filled" />
-                <br></br>
-                <TextField id="filled-basic" label="Expiration Date" variant="filled" />
-                <br></br>
-            </Box>
+                <TextField 
+                id="filled-basic" 
+                label="CVV" variant="filled" type="number"  inputProps={{ inputMode: 'numeric', pattern: '[0-9]{3}' }} />
+                <TextField id="filled-basic" label="Expiration Date" variant="filled" type="date"/>
+                </form>
+
+
             <div align = "center">
-                <br></br>
                 <Link to="/customer"><Button className='reg' variant='text'>Back</Button></Link> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <Button className='reg' variant = 'text'><b>Create Account</b></Button>  
             </div>
-    
-        </div>
+            </div>
+            </div>
         
 
     )

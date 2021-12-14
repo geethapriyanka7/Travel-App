@@ -48,7 +48,7 @@ const comonscol = [
       <Navbar email = {email}/>
 
         <div className='container' style={{marginTop:"7%"}}>
-      <Tableorp col={comonscol} data={data1} heading = "Owner Remove Property" filter= {false} pl="Name" />
+      <Tableorp col={comonscol} data={data1} heading = "Owner Remove Property" filter= {false} pl="Name" email = {email}/>
         </div>
         <div align = "center">
         <Link  to ={'/oh/'+email} state={{ email: email }}> <Button className='ac' variant='text'>Back</Button>  
