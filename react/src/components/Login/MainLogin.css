@@ -1,6 +1,6 @@
 .log{
     align-self: center;
-    color: rgb(0, 0, 0) !important;
+    color: #2E3B55 !important;
     padding: 15px 32px !important;
     text-align: center !important;
     text-decoration: none !important;
@@ -10,7 +10,7 @@
     cursor: pointer !important; 
 }
 .ad{
-    background-color: #000000 !important;
+    background-color: #2E3B55 !important;
     top: 50px !important;
     border: none !important;
     color: rgb(223, 217, 217) !important;
@@ -26,7 +26,7 @@
 .no{
     align-self: center;
     top: 150px !important;
-    color: rgb(0, 0, 0) !important;
+    color: #2E3B55 !important;
     padding: 15px 32px !important;
     text-align: center !important;
     text-decoration: none !important;
@@ -36,7 +36,7 @@
     cursor: pointer !important;
 }
 .reg{
-    background-color: #000000 !important;
+    background-color: #2E3B55 !important;
     top: 150px !important;
     border-radius: 20px  !important;
     color: rgb(223, 217, 217) !important;

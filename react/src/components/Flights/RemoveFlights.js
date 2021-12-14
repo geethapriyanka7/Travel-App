@@ -1,5 +1,8 @@
 import React, { useEffect, useState} from 'react'
 import Table2 from "../Layout/Table2";
+import { useLocation } from 'react-router-dom';
+import Navbar from '../Layout/Navbar';
+import Button from '@mui/material/Button'
 
 const comonscol = [
     { title: "Airline", field: "airline" , searchable : false , 
@@ -45,10 +48,15 @@ function Dashboard() {
 
     
     return (
-        <div className='container'>
+      <div> <Navbar />
+        <div className='container' style={{ marginTop: '5%'}}>
       <Table2 col={comonscol} data={data} data1={data1} heading = "Remove Flights" pl = "Flight Number" filter= {true} />
 
         </div>
+        <div align = "center">
+            <Button className='ac' variant='text'>Back</Button>  
+        </div>
+      </div>
     )
 }
 

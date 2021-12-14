@@ -23,8 +23,8 @@ export default function Navbar(props) {
           </div> : 
           
           <div style={{ color: 'white', marginRight:"15%" }}>
-          <Button style={{ color: 'white', marginRight:50}}>Sign In</Button>           
-          <Button style={{ color: 'white'}}>Log In</Button>
+          {/* <Button style={{ color: 'white', marginRight:50}}>Sign In</Button>            */}
+          <Link  to ='/'><Button style={{ color: 'white',marginRight:50}}>Log In</Button></Link>
           </div>
           }
           

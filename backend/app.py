@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
+app.config['MYSQL_PASSWORD'] = "***"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
@@ -28,8 +28,8 @@ def index():
         cmd = "select * FROM travel_reservation_service.view_customers;"
         cur.execute(cmd)
         row_headers=[x[0] for x in cur.description] #this will extract row headers
-        rv = cur.fetchall()    
-        json_data = []    
+        rv = cur.fetchall()
+        json_data=[]        
         for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
         mysql.connection.commit()
