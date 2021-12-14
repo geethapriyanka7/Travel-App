@@ -491,7 +491,7 @@ def index20():
 def index21():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call add_property('"+data[0]['property_name']+"', '"+data[0]['owner_email']+"', '"+data[0]['description']+"', '"+data[0]['capacity']+"', '"+data[0]['cost']+"', '"+data[0]['street']+"', '"+data[0]['city']+"', '"+data[0]['state']+"', '"+data[0]['zip']+"', '"+data[0]['nearest_airport_id']+"', '"+data[0]['dist_to_airport']+"');"
+        cmd = "call add_property('"+data['property_name']+"', '"+data['owner_email']+"', '"+data['description']+"', '"+data['capacity']+"', '"+data['cost']+"', '"+data['street']+"', '"+data['city']+"', '"+data['state']+"', '"+data['zip']+"', '"+data['nearest_airport_id']+"', '"+data['dist_to_airport']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
