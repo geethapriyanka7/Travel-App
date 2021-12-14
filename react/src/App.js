@@ -61,12 +61,12 @@ function App() {
           <Route path="/cao" element={<CreateAccountOwner/>}/>
           <Route path="/vp/:id" element={<ViewProp/>}/>
           <Route path="/rf" element={<RemoveFlights/>}/>
-          <Route path="/cf" element={<CancelFlight/>}/>
-          <Route path="/bf" element={<BookFlight/>}/>
-          <Route path="/rp" element={<ReserveProp/>}/>
-          <Route path="/ccp" element={<CancelProp/>}/>
-          <Route path="/crp" element={<ReviewProp/>}/>
-          <Route path="/cro" element={<RateOwner/>}/>
+          <Route path="/cf/:id" element={<CancelFlight/>}/>
+          <Route path="/bf/:id" element={<BookFlight/>}/>
+          <Route path="/rp/:id" element={<ReserveProp/>}/>
+          <Route path="/ccp/:id" element={<CancelProp/>}/>
+          <Route path="/crp/:id" element={<ReviewProp/>}/>
+          <Route path="/cro/:id" element={<RateOwner/>}/>
           <Route path="/vpr/:id" element={<ViewPropRes/>}/>
           <Route path="/orp/:id" element={<OwnerRemProp/>}/>
           <Route path="/orc" element={<RateCust/>}/>

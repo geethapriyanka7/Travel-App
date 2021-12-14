@@ -1,5 +1,9 @@
 import React, { useEffect, useState} from 'react'
-import Table2 from "../Layout/Table2";
+import Table2 from "../Layout/Table2"
+import { useLocation } from 'react-router-dom';
+import Navbar from '../Layout/NavbarCust';
+import Button from '@mui/material/Button'
+import {Link} from 'react-router-dom';
 
 const comonscol = [
     { title: "Airline", field: "airline" , searchable : false , 
@@ -10,7 +14,7 @@ const comonscol = [
   ];
 
 function Dashboard() {
-
+    const email = useLocation().state.email
     const [data,setData] = useState({})
     const [data1,setData1] = useState({})
 
@@ -45,10 +49,16 @@ function Dashboard() {
 
     
     return (
-        <div className='container'>
-      <Table2 col={comonscol} data={data} data1={data1} heading = "Book Flight" filter= {false} />
+      <div>  <Navbar email = {email}/>
+        <div className='container'style={{ marginTop: '5%'}}>
+      <Table2 col={comonscol} data={data} heading = "Book Flight" filter= {false} />
 
         </div>
+        <div align = "center">
+        <Link to={'/ch/'+email} state={{ email: email }}>   
+        <Button className='ac' variant='text'>Back</Button>  </Link>
+        </div>
+      </div>
     )
 }
 
