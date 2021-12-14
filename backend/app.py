@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "****"
+app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
@@ -28,7 +28,8 @@ def index():
         cmd = "select * FROM travel_reservation_service.view_customers;"
         cur.execute(cmd)
         row_headers=[x[0] for x in cur.description] #this will extract row headers
-        rv = cur.fetchall()        
+        rv = cur.fetchall()    
+        json_data = []    
         for result in rv:
                 json_data.append(dict(zip(row_headers,result)))
         mysql.connection.commit()
@@ -269,7 +270,7 @@ def view_book_flight():
         rv = cur.fetchall()
         json_data = []
         for result in rv:
-                json_data.append(result)
+                json_data.append(dict(zip(row_headers, result)))
         mysql.connection.commit()
         cur.close()
         return json.dumps(json_data)
@@ -298,10 +299,10 @@ def view_cancel_flight():
         rv = cur.fetchall()
         json_data = []
         for result in rv:
-                json_data.append(result)
+                json_data.append(dict(zip(row_headers, result)))
         mysql.connection.commit()
         cur.close()
-        return json.dumps(json_data)
+        return json.dumps(json_data, default = str)
 
 @cross_origin()
 def index15():
@@ -325,10 +326,10 @@ def view_reserve():
         x, json_data = {'time': time}, []
         json_data.append(x)
         for result in rv:
-                json_data.append(dict(zip(result, row_headers)))
+                json_data.append(dict(zip(row_headers, result)))
         mysql.connection.commit()
         cur.close()
-        return json.dumps(json_data)
+        return json.dumps(json_data, default = str)
 
 @cross_origin()
 def index16():
@@ -341,21 +342,20 @@ def index16():
         cur.close()
         return None
 
-@app.route("/cancel_property_reservation")
+@app.route("/ccp")
 @cross_origin()
 def view_cancel_rp():
         cur = mysql.connection.cursor()
-        cmd = ""
+        cmd = "SELECT reserve.Start_Date as reservation_date, property.Property_Name, property.Owner_Email, concat(Street,' ',City,' ',State,' ',Zip) as Address FROM travel_reservation_service.property, travel_reservation_service.reserve where property.Property_Name = reserve.Property_Name; "
         cur.execute(cmd)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
-        x, json_data = {'time': time}, []
-        json_data.append(x)
+        json_data = []
         for result in rv:
-                json_data.append(dict(zip(result, row_headers)))
+                json_data.append(dict(zip(row_headers, result)))
         mysql.connection.commit()
         cur.close()
-        return json.dumps(json_data)
+        return json.dumps(json_data, default = str)
 
 @cross_origin()
 def index17():
@@ -368,12 +368,12 @@ def index17():
         cur.close()
         return None
 
-@app.route("/customer_review_property")
+@app.route("/crp")
 @cross_origin()
 def view_review_property():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = ""
+        cmd = "SELECT reserve.Start_Date as reservation_date, property.Property_Name, property.Owner_Email, concat(Street,' ',City,' ',State,' ',Zip) as Address FROM travel_reservation_service.property, travel_reservation_service.reserve where property.Property_Name = reserve.Property_Name;"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
