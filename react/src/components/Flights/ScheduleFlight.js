@@ -2,15 +2,17 @@ import React, {Component} from 'react'
 import Button from '@mui/material/Button'
 import '../Flights/ScheduleFlight.css'
 import TextField from '@mui/material/TextField'
+import { useLocation } from 'react-router-dom';
+import Navbar from '../Layout/Navbar';
 import { Box } from '@material-ui/core';
 
 export default function Test() {
 
     return (
-        <div>
+        <div> <Navbar />
 
-        <div  align="center">
-            <Button className='log' variant = 'text'><b>Schedule Flight</b></Button>
+        <div  align="center" style={{ marginTop: '7.5%'}}>
+            <h1>Schedule Flight</h1>
         </div>
         
         <div align="center">
@@ -32,6 +34,9 @@ export default function Test() {
         <div align = "center">
             <TextField id="filled-basic" label="Departure Time" variant="filled" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <TextField id="filled-basic" label="Arrival Time" variant="filled" />
+        </div>
+        <div align = "center">
+            <Button className='ac' variant='text'>Back</Button>  
         </div>
         </div>
         )

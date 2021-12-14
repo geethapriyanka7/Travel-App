@@ -1,5 +1,8 @@
 import React, { useEffect, useState} from 'react'
-import Table from "../Layout/Table";
+import Table from "../Layout/Table"
+import { useLocation } from 'react-router-dom';
+import Navbar from '../Layout/Navbar';
+import Button from '@mui/material/Button'
 
 const comonscol = [
     { title: "Name", field: "airline_name" , filtering: false},
@@ -34,12 +37,18 @@ const comonscol = [
 
     
 
-    
+    // const email = useLocation().state.email
+    // console.log(email)
     return (
-        <div className='container'>
+      
+      <div> <Navbar />
+        <div className='container' style={{ marginTop: '5%'}}>
       <Table col={comonscol} data={data} heading = "View Airlines" pl = "Airline Name" filter= {false} />
-
         </div>
+        <div align = "center">
+            <Button className='ac' variant='text'>Back</Button>  
+        </div>
+      </div>
     )
 }
 

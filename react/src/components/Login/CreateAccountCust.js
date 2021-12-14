@@ -3,6 +3,8 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import { Box } from '@material-ui/core';
 import './CreateAccountOwner.css'
+import { useLocation } from 'react-router-dom';
+import Navbar from '../Layout/Navbar';
 
 export default function Register(){
     const [value, setValue] = React.useState(0);
@@ -11,9 +13,9 @@ export default function Register(){
     setValue(newValue);
   };
     return (
-        <div>
-            <div  align="center">
-            <Button className='log' variant = 'text'><b>Register as Customer</b></Button>
+        <div> <Navbar />
+            <div  align="center" style={{ marginTop: '5%'}}>
+            <h1>Register as Customer</h1>
             </div>
             <Box
                 align="center"
@@ -44,7 +46,10 @@ export default function Register(){
                 <br></br>
             </Box>
             <div align = "center">
-            <Button className='bb' variant = 'text'><b>Create Account</b></Button>  
+                <Button className='bb' variant = 'text'><b>Create Account</b></Button>  
+            </div>
+            <div align = "center">
+                <Button className='ac' variant='text'>Back</Button>  
             </div>
         </div>
         

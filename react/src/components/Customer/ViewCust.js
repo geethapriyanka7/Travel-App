@@ -1,5 +1,8 @@
 import React, { useEffect, useState} from 'react'
 import Table from "../Layout/Table";
+import { useLocation } from 'react-router-dom';
+import Navbar from '../Layout/Navbar';
+import Button from '@mui/material/Button'
 
 const comonscol = [
     { title: "Customer Name", field: "customer_name" , filtering: false },
@@ -37,10 +40,15 @@ function Dashboard() {
 
     
     return (
-        <div className='container'>
-      <Table col={comonscol} data={data} heading = "View Customers" pl = "Name" filter= {false} />
+      <div> <Navbar />
+        <div className='container'style={{ marginTop: '5%'}}>
+          <Table col={comonscol} data={data} heading = "View Customers" pl = "Name" filter= {false} />
 
         </div>
+        <div align = "center">
+            <Button className='ac' variant='text'>Back</Button>  
+        </div>
+      </div>
     )
 }
 
