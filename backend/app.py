@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
+app.config['MYSQL_PASSWORD'] = "@"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
@@ -492,8 +492,9 @@ def index21():
 @cross_origin()
 def view_remove_property():
         cur = mysql.connection.cursor()
-        cmd = "select Property_Name, Descr, Capacity, Cost, concat(Street,' ',City,' ',State,' ',Zip) as Address from property;"
+        cmd = "select Property_Name, Owner_Email, Descr, Capacity, Cost, concat(Street,' ',City,' ',State,' ',Zip) as Address from property;"
         cur.execute(cmd)
+        rowcount = cur.rowcount
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
         json_data = []
@@ -501,19 +502,24 @@ def view_remove_property():
                 json_data.append(dict(zip(row_headers, result)))
         mysql.connection.commit()
         cur.close()
-        return json.dumps(json_data)
+
+        return (json.dumps(json_data))
 
 @app.route("/orp", methods = ["POST"])
 @cross_origin()
 def index22():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call remove_property('"+data[0]['owner_email']+"', '"+data[0]['current_date']+"');"
+        t='2021-10-18'
+        # print(data)
+        cmd = "call remove_property('"+data['Property_Name']+"', '"+data['Owner_Email']+"','"+str(t)+"');"
+        print(t)
+        # print(cmd)
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
         cur.close()
-        return None
+        return str(cur.rowcount)
 
 @app.route("/orc")
 @cross_origin()

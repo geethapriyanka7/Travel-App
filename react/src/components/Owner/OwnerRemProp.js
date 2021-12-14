@@ -1,8 +1,13 @@
 import React, { useEffect, useState} from 'react'
-import Table2 from "../Layout/Table2";
+import Tableorp from "../Layout/Tableorp";
+import Navbar from '../Layout/NavbarOwn';
+import { useLocation } from 'react-router-dom';
+import Button from '@mui/material/Button'
+import {Link} from 'react-router-dom'
+
 
 const comonscol = [
-    { title: "Property Name", field: "Property_Name",searchable : false, filtering: false },
+    { title: "Property Name", field: "Property_Name", filtering: false },
     { title: "Description", field: "Descr" ,searchable : false, filtering: false},
     { title: "Capacity", field: "Capacity" ,searchable : false, filtering: false},
     { title: "Cost", field: "Cost" ,searchable : false, filtering: false},
@@ -11,6 +16,7 @@ const comonscol = [
 
   function Dashboard() {
 
+    const email = useLocation().state.email
     const [data,setData] = useState({})
     const [data1,setData1] = useState({})
 
@@ -20,17 +26,10 @@ const comonscol = [
     .then(text => {
       try {
           const data = JSON.parse(text);
-          const data1 = JSON.parse(text);
+          const data1 = Array.isArray(data) && data.filter(group =>  group.Owner_Email === email)
           setData1(data1)
-          var tz = new Set()
-          
-          {Array.isArray(data) && data.map(group =>  tz.add(group.airline))}
-
-          tz = [...tz]    
-        
-          {Array.isArray(data) && data.map(group => group.airline = tz.indexOf(group.airline))}
           setData(data)
-          console.log(data)
+          console.log(data1)
           
           // Do your JSON handling here
       } catch(err) {
@@ -45,9 +44,16 @@ const comonscol = [
 
     
     return (
-        <div className='container'>
-      <Table2 col={comonscol} data={data} data1={data1} heading = "Owner Remove Property" filter= {false} />
+      <div>
+      <Navbar email = {email}/>
 
+        <div className='container' style={{marginTop:"7%"}}>
+      <Tableorp col={comonscol} data={data1} heading = "Owner Remove Property" filter= {false} pl="Name" />
+        </div>
+        <div align = "center">
+        <Link  to ={'/oh/'+email} state={{ email: email }}> <Button className='ac' variant='text'>Back</Button>  
+        </Link>
+        </div>
         </div>
     )
 }

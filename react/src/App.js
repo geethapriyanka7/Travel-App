@@ -54,7 +54,7 @@ function App() {
           <Route path="/ch/:id" element={<CustomerHome/>}/>
           <Route path="/apd" element={<AdminProcessDate/>}/>
           <Route path="/sf" element={<ScheduleFlight/>}/>
-          <Route path="/ap" element={<AddProp/>}/>
+          <Route path="/ap/:id" element={<AddProp/>}/>
           <Route path="/cac" element={<CreateAccountCust/>}/>
           <Route path="/cao" element={<CreateAccountOwner/>}/>
           <Route path="/vp" element={<ViewProp/>}/>
@@ -66,7 +66,7 @@ function App() {
           <Route path="/crp" element={<ReviewProp/>}/>
           <Route path="/cro" element={<RateOwner/>}/>
           <Route path="/vpr" element={<ViewPropRes/>}/>
-          <Route path="/orp" element={<OwnerRemProp/>}/>
+          <Route path="/orp/:id" element={<OwnerRemProp/>}/>
           <Route path="/orc" element={<RateCust/>}/>
         </Routes>
       </header>
