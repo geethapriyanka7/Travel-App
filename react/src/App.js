@@ -29,6 +29,7 @@ import ReviewProp from './components/Customer/ReviewProp'
 import RateOwner from './components/Customer/RateOwner'
 import ViewPropRes from './components/Properties/ViewPropRes'
 import OwnerRemProp from './components/Owner/OwnerRemProp'
+import RateCust from './components/Owner/RateCust'
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
           <Route path="/cro" element={<RateOwner/>}/>
           <Route path="/vpr" element={<ViewPropRes/>}/>
           <Route path="/orp" element={<OwnerRemProp/>}/>
+          <Route path="/orc" element={<RateCust/>}/>
         </Routes>
       </header>
     </div>

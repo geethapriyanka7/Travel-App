@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "***"
+app.config['MYSQL_PASSWORD'] = "Pri@12364"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
@@ -478,7 +478,7 @@ def index22():
         cur.close()
         return None
 
-@app.route("/owner_rates_customer", methods = ["POST"])
+@app.route("/orc", methods = ["POST"])
 @cross_origin()
 def index23():
         cur = mysql.connection.cursor()
