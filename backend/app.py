@@ -72,7 +72,7 @@ def index():
 def index1():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call remove_owner('"+data[0]['email']+"');"
+        cmd = "call remove_owner('"+data['email']+"');"
         cur.execute(cmd)
         cur.fetchall()
         mysql.connection.commit()
@@ -189,7 +189,7 @@ def index8():
 def index9():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call process_date('"+data[0]['date']+"');"
+        cmd = "call process_date('"+data['date']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
@@ -254,12 +254,12 @@ def indexrf1():
 #         cur.close()
 #         return None
 
-@app.route("/schedule_flight", methods=["POST"])
+@app.route("/sf", methods=["POST"])
 @cross_origin()
 def index11():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call schedule_flight('"+data[0]['flight_num']+"', '"+data[0]['airline_name']+"', '"+data[0]['from_airport']+"', '"+data[0]['departure_time']+"', '"+data[0]['arrival_time']+"', '"+data[0]['flight_date']+"', '"+data[0]['cost']+"', '"+data[0]['capacity']+"', '"+data[0]['current_date']+"');"
+        cmd = "call schedule_flight('"+data['flight_num']+"', '"+data['airline_name']+"', '"+data['from_airport']+"', '"+data['departure_time']+"', '"+data['arrival_time']+"', '"+data['flight_date']+"', '"+data['cost']+"', '"+data['capacity']+"', '"+data['current_date']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()        
@@ -271,7 +271,7 @@ def index11():
 def index12():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call register_customer('"+data[0]['email']+"', '"+data[0]['first_name']+"', '"+data[0]['last_name']+"', '"+data[0]['password']+"', '"+data[0]['phone_number']+"', '"+data[0]['cc_number']+"', '"+data[0]['cvv']+"', '"+data[0]['exp_data']+"', '"+data[0]['location']+"');"
+        cmd = "call register_customer('"+data['email']+"', '"+data['first_name']+"', '"+data['last_name']+"', '"+data['password']+"', '"+data['phone_number']+"', '"+data['cc_number']+"', '"+data['cvv']+"', '"+data['exp_data']+"', '"+data['location']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
@@ -283,7 +283,7 @@ def index12():
 def index13():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call register_owner('"+data[0]['email']+"', '"+data[0]['first_name']+"', '"+data[0]['last_name']+"', '"+data[0]['password']+"', '"+data[0]['phone_number']+"');"
+        cmd = "call register_owner('"+data['email']+"', '"+data['first_name']+"', '"+data['last_name']+"', '"+data['password']+"', '"+data['phone_number']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
@@ -310,7 +310,7 @@ def view_book_flight():
 def index14():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call book_flight('"+data[0]['email']+"', '"+data[0]['flight_num']+"', '"+data[0]['airline_name']+"', '"+data[0]['num_seats']+"', '"+data[0]['current_date']+"');"
+        cmd = "call book_flight('"+data['email']+"', '"+data['flight_num']+"', '"+data['airline_name']+"', '"+data['num_seats']+"', '"+data['current_date']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
@@ -340,7 +340,7 @@ def view_cancel_flight():
 def index15():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call cancel_flight_booking('"+data[0]['email']+"', '"+data[0]['flight_num']+"', '"+data[0]['airline_name']+"', '"+data[0]['current_date']+"');"
+        cmd = "call cancel_flight_booking('"+data['email']+"', '"+data['flight_num']+"', '"+data['airline_name']+"', '"+data['current_date']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
@@ -368,7 +368,7 @@ def view_reserve():
 def index16():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call reserve_property('"+data[0]['property_name']+"', '"+data[0]['owner_email']+"', '"+data[0]['customer_email']+"', '"+data[0]['start_date']+"', '"+data[0]['end_date']+"', ''"+data[0]['num_guests']+", '"+data[0]['current_date']+"');"
+        cmd = "call reserve_property('"+data['property_name']+"', '"+data['owner_email']+"', '"+data['customer_email']+"', '"+data['start_date']+"', '"+data['end_date']+"', ''"+data['num_guests']+", '"+data['current_date']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
@@ -395,7 +395,7 @@ def view_cancel_rp():
 def index17():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call cancel_property_reservation('"+data[0]['property_name']+"', '"+data[0]['owner_email']+"', '"+data[0]['customer_email']+"', '"+data[0]['current_date']+"');"
+        cmd = "call cancel_property_reservation('"+data['property_name']+"', '"+data['owner_email']+"', '"+data['customer_email']+"', '"+data['current_date']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
@@ -422,7 +422,7 @@ def view_review_property():
 def index18():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call customer_review_property('"+data[0]['property_name']+"', '"+data[0]['owner_email']+"', '"+data[0]['customer_email']+"', '"+data[0]['content']+"', '"+data[0]['score']+"', '"+data[0]['current_date']+"');"
+        cmd = "call customer_review_property('"+data['property_name']+"', '"+data['owner_email']+"', '"+data['customer_email']+"', '"+data['content']+"', '"+data['score']+"', '"+data['current_date']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
@@ -450,7 +450,7 @@ def cro():
 def index19():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call customer_rates_owner('"+data[0]['customer_email']+"', '"+data[0]['owner_email']+"', '"+data[0]['score']+"', '"+data[0]['current_date']+"');"
+        cmd = "call customer_rates_owner('"+data['customer_email']+"', '"+data['owner_email']+"', '"+data['score']+"', '"+data['current_date']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
@@ -463,7 +463,7 @@ def index20():
         cur = mysql.connection.cursor()
         cur2 = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call view_individual_property_reservations('"+data[0]['owner_email']+"', '"+data['property_name']+"');"
+        cmd = "call view_individual_property_reservations('"+data['owner_email']+"', '"+data['property_name']+"');"
         cur.execute(cmd)
         cmd2 = "select Property_Name, Start_Date, End_Date, Customer_Phone_num, Customer_Email, Table_Booking_Cost, Review, Rating_Score from view_individual_property_reservations;"
         cur2.execute(cmd2)
@@ -541,7 +541,7 @@ def view_orc():
 def index23():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call owner_customer('"+data[0]['property_name']+"','"+data[0]['owner_email']+"', '"+data[0]['customer_email']+"', '"+data[0]['score']+"', '"+data[0]['current_data']+"');"
+        cmd = "call owner_customer('"+data['property_name']+"','"+data['owner_email']+"', '"+data['customer_email']+"', '"+data['score']+"', '"+data ['current_data']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
