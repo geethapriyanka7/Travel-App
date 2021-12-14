@@ -1,15 +1,17 @@
 import React from 'react'
 import Button from '@mui/material/Button';
 import './OwnerHome.css';
+import { useLocation } from 'react-router-dom';
+import Navbar from '../Layout/Navbar';
 
 
 export default function Test() {
 
     return (
-        <body>
+        <div> <Navbar />
 
-        <div  align="center">
-            <Button className='bun' variant = 'text'>Welcome, Owner!</Button>
+        <div  align="center" style={{ marginTop: '5%'}}>
+            <h1>Welcome, Owner!</h1>
          </div>
         <div align="center">
             <Button className='gug' variant='text'>Add Property</Button>
@@ -17,7 +19,7 @@ export default function Test() {
         <div align="center">
             <Button className='big' variant='text'>Remove Property</Button>
         </div>
-        </body>
+        </div>
     )
 
 }

@@ -2,19 +2,18 @@ import React, { useEffect, useState} from 'react'
 import Table2 from "../Layout/Table2";
 
 const comonscol = [
-    { title: "Reservation Date", field: "reservation_date" ,searchable : false, filtering: false},
-    { title: "Property Name", field: "Property_Name",searchable : false, filtering: false },
-    { title: "Owner Email", field: "Owner_Email",searchable : false, filtering: false},
-    { title: "Address", field: "Address",searchable : false, filtering: false}
+    { title: "Property Name", field: "property_name",  searchable : false, filtering: false },
+    { title: "Owner Email", field: "owner_email", searchable : false , filtering: false },
+    { title: "Capacity", field: "capacity", searchable : false , filtering: false },
   ];
 
-  function Dashboard() {
+function Dashboard() {
 
     const [data,setData] = useState({})
     const [data1,setData1] = useState({})
 
     useEffect(() => {
-        fetch("http://localhost:5000/ccp")
+        fetch("http://localhost:5000/rp")
     .then(response => response.text ())
     .then(text => {
       try {
@@ -45,11 +44,10 @@ const comonscol = [
     
     return (
         <div className='container'>
-      <Table2 col={comonscol} data={data} data1={data1} heading = "Customer Cancel Property" filter= {false} />
+      <Table2 col={comonscol} data={data} data1={data1} heading = "Reserve Property" filter= {false} />
 
         </div>
     )
 }
 
 export default Dashboard
-

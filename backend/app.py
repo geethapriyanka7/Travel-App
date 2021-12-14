@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
+app.config['MYSQL_PASSWORD'] = "Pri@12364"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
@@ -154,7 +154,7 @@ def index8():
         cur.close()
         return json.dumps(json_data)
 
-@app.route("/apd")
+@app.route("/apd", methods = ["POST"])
 @cross_origin()
 def index9():
         cur = mysql.connection.cursor()
@@ -224,7 +224,7 @@ def index10():
         cur.close()
         return None
 
-@app.route("/schedule_flight")
+@app.route("/schedule_flight", methods=["POST"])
 @cross_origin()
 def index11():
         cur = mysql.connection.cursor()
@@ -236,7 +236,7 @@ def index11():
         cur.close()
         return None
 
-@app.route("/register_customer")
+@app.route("/register_customer", methods=["POST"])
 @cross_origin()
 def index12():
         cur = mysql.connection.cursor()
@@ -260,11 +260,11 @@ def index13():
         cur.close()
         return None
 
-@app.route("/book_flight")
+@app.route("/bf")
 @cross_origin()
 def view_book_flight():
         cur = mysql.connection.cursor()
-        cmd = "select flight_id, airline, num_empty_seats from view_flight;"
+        cmd = "select airline, flight_id, num_empty_seats from view_flight;"
         cur.execute(cmd)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
@@ -286,7 +286,7 @@ def index14():
         cur.close()
         return None  
 
-@app.route("/cancel_flight")
+@app.route("/cf")
 @cross_origin()
 def view_cancel_flight():
         cur = mysql.connection.cursor()
@@ -315,7 +315,7 @@ def index15():
         cur.close()
         return None
 
-@app.route("/reserve_property")
+@app.route("/rp")
 @cross_origin()
 def view_reserve():
         cur = mysql.connection.cursor()
@@ -372,13 +372,16 @@ def index17():
 @cross_origin()
 def view_review_property():
         cur = mysql.connection.cursor()
-        data = request.get_json()
         cmd = "SELECT reserve.Start_Date as reservation_date, property.Property_Name, property.Owner_Email, concat(Street,' ',City,' ',State,' ',Zip) as Address FROM travel_reservation_service.property, travel_reservation_service.reserve where property.Property_Name = reserve.Property_Name;"
         cur.execute(cmd)
-        #cur.fetchall()
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(dict(zip(row_headers, result)))
         mysql.connection.commit()
         cur.close()
-        return None
+        return json.dumps(json_data, default = str)
 
 @cross_origin()
 def index18():
@@ -392,7 +395,21 @@ def index18():
         return None
 
 
-@app.route("/customer_rate_owner")
+@app.route("/customer_rate_owner", methods = ["POST"])
+@cross_origin()
+def cro():
+        cur = mysql.connection.cursor()
+        cmd = "SELECT reserve.Start_Date as reservation_date, property.Property_Name, property.Owner_Email, concat(Street,' ',City,' ',State,' ',Zip) as Address FROM travel_reservation_service.property, travel_reservation_service.reserve where property.Property_Name = reserve.Property_Name;"
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(dict(zip(row_headers, result)))
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data, default = str)
+
 @cross_origin()
 def index19():
         cur = mysql.connection.cursor()
@@ -404,19 +421,26 @@ def index19():
         cur.close()
         return None
 
-@app.route("/view_properties_reservations")
+@app.route("/vpr", methods = ["POST"])
 @cross_origin()
 def index20():
         cur = mysql.connection.cursor()
+        cur2 = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call view_individual_property_reservations('"+data[0]['property_name']+"', '"+data['owner_email']+"');"
+        cmd = "call view_individual_property_reservations('"+data[0]['owner_email']+"', '"+data['property_name']+"');"
         cur.execute(cmd)
-        #cur.fetchall()
+        cmd2 = "select Property_Name, Start_Date, End_Date, Customer_Phone_num, Customer_Email, Table_Booking_Cost, Review, Rating_Score from view_individual_property_reservations;"
+        cur2.execute(cmd2)
+        row_headers = [x[0] for x in cur2.description]
+        rv = cur2.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(dict(zip(row_headers, result)))
         mysql.connection.commit()
         cur.close()
-        return None
+        return json.dumps(json_data)
 
-@app.route("/owner_add_property")
+@app.route("/owner_add_property", methods = ["POST"])
 @cross_origin()
 def index21():
         cur = mysql.connection.cursor()
@@ -428,7 +452,21 @@ def index21():
         cur.close()
         return None
 
-@app.route("/owner_remove_property")
+@app.route("/orp", methods = ["POST"])
+@cross_origin()
+def view_remove_property():
+        cur = mysql.connection.cursor()
+        cmd = "select Property_Name, Descr, Capacity, Cost, concat(Street,' ',City,' ',State,' ',Zip) as Address from property;"
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(dict(zip(row_headers, result)))
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data)
+
 @cross_origin()
 def index22():
         cur = mysql.connection.cursor()
@@ -440,12 +478,12 @@ def index22():
         cur.close()
         return None
 
-@app.route("/owner_rates_customer")
+@app.route("/orc", methods = ["POST"])
 @cross_origin()
 def index23():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call owner_customer('"+data[0]['owner_email']+"', '"+data[0]['customer_email']+"', '"+data[0]['score']+"', '"+data[0]['current_data']+"');"
+        cmd = "call owner_customer('"+data[0]['property_name']+"','"+data[0]['owner_email']+"', '"+data[0]['customer_email']+"', '"+data[0]['score']+"', '"+data[0]['current_data']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
