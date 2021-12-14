@@ -2,10 +2,14 @@ import React, { useEffect, useState} from 'react'
 import Table2 from "../Layout/Table2";
 
 const comonscol = [
-    { title: "Reservation Date", field: "reservation_date" ,searchable : false, filtering: false},
     { title: "Property Name", field: "Property_Name",searchable : false, filtering: false },
-    { title: "Owner Email", field: "Owner_Email",searchable : false, filtering: false},
-    { title: "Address", field: "Address",searchable : false, filtering: false}
+    { title: "Start Date", field: "Start_date" ,searchable : false, filtering: false},
+    { title: "End Date", field: "End_date" ,searchable : false, filtering: false},
+    { title: "Cust. Phone#", field: "Customer_phone_num" ,searchable : false, filtering: false},
+    { title: "Customer", field: "Customer_Email",searchable : false, filtering: false},
+    { title: "Cost", field: "Table_Booking_Cost",searchable : false, filtering: false},
+    { title: "Review", field: "Review",searchable : false, filtering: false},
+    { title: "Rating", field: "Rating_Score",searchable : false, filtering: false}
   ];
 
   function Dashboard() {
@@ -14,7 +18,7 @@ const comonscol = [
     const [data1,setData1] = useState({})
 
     useEffect(() => {
-        fetch("http://localhost:5000/ccp")
+        fetch("http://localhost:5000/vpr")
     .then(response => response.text ())
     .then(text => {
       try {
@@ -45,11 +49,10 @@ const comonscol = [
     
     return (
         <div className='container'>
-      <Table2 col={comonscol} data={data} data1={data1} heading = "Customer Cancel Property" filter= {false} />
+      <Table2 col={comonscol} data={data} data1={data1} heading = "View Property Reservation" filter= {false} />
 
         </div>
     )
 }
 
 export default Dashboard
-

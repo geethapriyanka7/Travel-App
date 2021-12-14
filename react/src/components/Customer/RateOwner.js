@@ -3,8 +3,8 @@ import Table2 from "../Layout/Table2";
 
 const comonscol = [
     { title: "Reservation Date", field: "reservation_date" ,searchable : false, filtering: false},
-    { title: "Property Name", field: "Property_Name",searchable : false, filtering: false },
     { title: "Owner Email", field: "Owner_Email",searchable : false, filtering: false},
+    { title: "Property Name", field: "Property_Name",searchable : false, filtering: false },
     { title: "Address", field: "Address",searchable : false, filtering: false}
   ];
 
@@ -14,7 +14,7 @@ const comonscol = [
     const [data1,setData1] = useState({})
 
     useEffect(() => {
-        fetch("http://localhost:5000/ccp")
+        fetch("http://localhost:5000/crp")
     .then(response => response.text ())
     .then(text => {
       try {
@@ -45,11 +45,10 @@ const comonscol = [
     
     return (
         <div className='container'>
-      <Table2 col={comonscol} data={data} data1={data1} heading = "Customer Cancel Property" filter= {false} />
+      <Table2 col={comonscol} data={data} data1={data1} heading = "Customer Rate Owner" filter= {false} />
 
         </div>
     )
 }
 
 export default Dashboard
-

@@ -2,19 +2,20 @@ import React, { useEffect, useState} from 'react'
 import Table2 from "../Layout/Table2";
 
 const comonscol = [
-    { title: "Reservation Date", field: "reservation_date" ,searchable : false, filtering: false},
-    { title: "Property Name", field: "Property_Name",searchable : false, filtering: false },
-    { title: "Owner Email", field: "Owner_Email",searchable : false, filtering: false},
-    { title: "Address", field: "Address",searchable : false, filtering: false}
+    { title: "Airline", field: "airline" , searchable : false , 
+    lookup: {0:'Delta Airlines', 1:'Southwest Airlines', 2:'United Airlines' ,
+    3: 'American Airlines', 4: 'JetBlue Airways', 5: 'Spirit Airlines',6:'WestJet', 7: 'Interjet'} },
+    { title: "Number", field: "flight_id",  filtering: false },
+    { title: "Date", field: "flight_date", searchable : false , filtering: false },
   ];
 
-  function Dashboard() {
+function Dashboard() {
 
     const [data,setData] = useState({})
     const [data1,setData1] = useState({})
 
     useEffect(() => {
-        fetch("http://localhost:5000/ccp")
+        fetch("http://localhost:5000/rf")
     .then(response => response.text ())
     .then(text => {
       try {
@@ -45,11 +46,10 @@ const comonscol = [
     
     return (
         <div className='container'>
-      <Table2 col={comonscol} data={data} data1={data1} heading = "Customer Cancel Property" filter= {false} />
+      <Table2 col={comonscol} data={data} data1={data1} heading = "Cancel Flight" pl = "Flight Number" filter= {true} />
 
         </div>
     )
 }
 
 export default Dashboard
-

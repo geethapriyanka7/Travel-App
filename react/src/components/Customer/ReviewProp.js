@@ -14,7 +14,7 @@ const comonscol = [
     const [data1,setData1] = useState({})
 
     useEffect(() => {
-        fetch("http://localhost:5000/ccp")
+        fetch("http://localhost:5000/crp")
     .then(response => response.text ())
     .then(text => {
       try {
@@ -45,11 +45,10 @@ const comonscol = [
     
     return (
         <div className='container'>
-      <Table2 col={comonscol} data={data} data1={data1} heading = "Customer Cancel Property" filter= {false} />
+      <Table2 col={comonscol} data={data} data1={data1} heading = "Customer Review Property" filter= {false} />
 
         </div>
     )
 }
 
 export default Dashboard
-
