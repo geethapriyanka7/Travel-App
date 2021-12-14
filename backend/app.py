@@ -14,12 +14,42 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "Pri@12364"
+app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
 
 mysql = MySQL(app)
+
+@app.route("/customer")
+@cross_origin()
+def view_cust():
+        cur = mysql.connection.cursor()
+        cmd = "select email from customer;"
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(dict(zip(row_headers,result)))
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data, default = str)
+
+@app.route("/owner")
+@cross_origin()
+def view_own():
+        cur = mysql.connection.cursor()
+        cmd = "select * from travel_reservation_service.view_owners;"
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(dict(zip(row_headers, result)))
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data)
 
 @app.route("/vc")
 @cross_origin()
@@ -213,16 +243,16 @@ def indexrf1():
 #         cur.close()
 #         return json.dumps(json_data)
 
-@cross_origin()
-def index10():
-        cur = mysql.connection.cursor()
-        data = request.get_json()
-        cmd = "call remove_flight('"+data[0]['flight_num']+"', '"+data[0]['airline_name']+"', '"+data[0]['current_date']+"');"
-        cur.execute(cmd)
-        #cur.fetchall()
-        mysql.connection.commit()
-        cur.close()
-        return None
+# @cross_origin()
+# def index10():
+#         cur = mysql.connection.cursor()
+#         data = request.get_json()
+#         cmd = "call remove_flight('"+data[0]['flight_num']+"', '"+data[0]['airline_name']+"', '"+data[0]['current_date']+"');"
+#         cur.execute(cmd)
+#         #cur.fetchall()
+#         mysql.connection.commit()
+#         cur.close()
+#         return None
 
 @app.route("/schedule_flight", methods=["POST"])
 @cross_origin()
@@ -248,7 +278,7 @@ def index12():
         cur.close()
         return None 
 
-@app.route("/register_owner")
+@app.route("/register_owner", methods = ["POST"])
 @cross_origin()
 def index13():
         cur = mysql.connection.cursor()
@@ -275,6 +305,7 @@ def view_book_flight():
         cur.close()
         return json.dumps(json_data)
 
+@app.route("/bf", methods = ["POST"])
 @cross_origin()
 def index14():
         cur = mysql.connection.cursor()
@@ -304,6 +335,7 @@ def view_cancel_flight():
         cur.close()
         return json.dumps(json_data, default = str)
 
+@app.route("/cf", methods = ["POST"])
 @cross_origin()
 def index15():
         cur = mysql.connection.cursor()
@@ -331,6 +363,7 @@ def view_reserve():
         cur.close()
         return json.dumps(json_data, default = str)
 
+@app.route("/rp", methods = ["POST"])
 @cross_origin()
 def index16():
         cur = mysql.connection.cursor()
@@ -357,6 +390,7 @@ def view_cancel_rp():
         cur.close()
         return json.dumps(json_data, default = str)
 
+@app.route("/ccp", methods = ["POST"])
 @cross_origin()
 def index17():
         cur = mysql.connection.cursor()
@@ -383,6 +417,7 @@ def view_review_property():
         cur.close()
         return json.dumps(json_data, default = str)
 
+@app.route("/crp", methods = ["POST"])
 @cross_origin()
 def index18():
         cur = mysql.connection.cursor()
@@ -395,7 +430,7 @@ def index18():
         return None
 
 
-@app.route("/customer_rate_owner", methods = ["POST"])
+@app.route("/customer_rate_owner")
 @cross_origin()
 def cro():
         cur = mysql.connection.cursor()
@@ -410,6 +445,7 @@ def cro():
         cur.close()
         return json.dumps(json_data, default = str)
 
+@app.route("/customer_rate_owner", methods = ["POST"])
 @cross_origin()
 def index19():
         cur = mysql.connection.cursor()
@@ -452,7 +488,7 @@ def index21():
         cur.close()
         return None
 
-@app.route("/orp", methods = ["POST"])
+@app.route("/orp")
 @cross_origin()
 def view_remove_property():
         cur = mysql.connection.cursor()
@@ -467,6 +503,7 @@ def view_remove_property():
         cur.close()
         return json.dumps(json_data)
 
+@app.route("/orp", methods = ["POST"])
 @cross_origin()
 def index22():
         cur = mysql.connection.cursor()
@@ -477,6 +514,21 @@ def index22():
         mysql.connection.commit()
         cur.close()
         return None
+
+@app.route("/orc")
+@cross_origin()
+def view_orc():
+        cur = mysql.connection.cursor()
+        cmd = "SELECT reserve.Start_Date as Reservation_Date, reserve.Customer as Customer_Email,property.Property_Name, concat(Street,' ',City,' ',State,' ',Zip) as Address FROM travel_reservation_service.property, travel_reservation_service.reserve where property.Property_Name = reserve.Property_Name;"
+        cur.execute(cmd)
+        row_headers = [x[0] for x in cur.description]
+        rv = cur.fetchall()
+        json_data = []
+        for result in rv:
+                json_data.append(dict(zip(row_headers, result)))
+        mysql.connection.commit()
+        cur.close()
+        return json.dumps(json_data, default = str)
 
 @app.route("/orc", methods = ["POST"])
 @cross_origin()
