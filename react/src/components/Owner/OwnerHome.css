@@ -12,29 +12,31 @@
   }
 
 .gug {
-    background-color: #000000 !important;
+    background-color: #2E3B55 !important;
     border: none !important;
     top: 70px !important;
-    color: rgb(224, 215, 215) !important;
+    color: white !important;
     padding: 15px 32px !important;
     text-align: center !important;
     border-radius: 15px !important;
     display: inline-block !important;
-    font-size: 30px !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
     margin: 4px 2px !important;
     cursor: pointer !important;
 }
 
 .big {
-    background-color: #000000 !important;
+    background-color: #2E3B55 !important;
     border: none !important;
     top: 100px !important;
-    color: rgb(224, 215, 215) !important;
+    color: white !important;
     padding: 15px 32px !important;
     text-align: center !important;
     border-radius: 15px !important;
     display: inline-block !important;
-    font-size: 30px !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
     margin: 4px 2px !important;
     cursor: pointer !important;
 }

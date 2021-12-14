@@ -1,5 +1,8 @@
 import React, { useEffect, useState} from 'react'
 import Table from "../Layout/Table";
+import { useLocation } from 'react-router-dom';
+import Navbar from '../Layout/Navbar';
+import Button from '@mui/material/Button'
 
 const comonscol = [
     { title: "Name", field: "property_name" ,searchable : false, filtering: false},
@@ -39,10 +42,15 @@ const comonscol = [
 
     
     return (
-        <div className='container'>
+      <div> <Navbar />
+        <div className='container'style={{ marginTop: '5%'}}>
       <Table col={comonscol} data={data} heading = "View Properties" pl = "Capacity" filter= {false} />
 
         </div>
+        <div align = "center">
+            <Button className='ac' variant='text'>Back</Button>  
+        </div>
+      </div>
     )
 }
 

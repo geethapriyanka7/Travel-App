@@ -1,7 +1,7 @@
 .button {
-    background-color: #ffffff !important;
+    background-color:  #2E3B55!important;
     border: none !important;
-    color: rgb(0, 0, 0) !important;
+    color: white !important;
     padding: 15px 32px !important;
     text-align: center !important;
     text-decoration: none !important;
@@ -11,10 +11,10 @@
     cursor: pointer !important; 
   }
 .but {
-    background-color: #ffffff !important;
+    background-color: #2E3B55 !important;
     border: none !important;
     top: 100px !important;
-    color: rgb(0, 0, 0) !important;
+    color: white !important;
     padding: 15px 32px !important;
     text-align: center !important;
     text-decoration: none !important;
@@ -24,10 +24,10 @@
     cursor: pointer !important;
 }
 .gig {
-    background-color: #000000 !important;
+    background-color: #2E3B55 !important;
     border: none !important;
     top: 150px !important;
-    color: rgb(224, 215, 215) !important;
+    color: white !important;
     padding: 15px 32px !important;
     text-align: center !important;
     border-radius: 15px !important;
