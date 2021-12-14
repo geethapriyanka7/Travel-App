@@ -5,10 +5,10 @@ import Navbar from '../Layout/Navbar';
 import Button from '@mui/material/Button'
 
 const comonscol = [
-    { title: "Reservation Date", field: "customer_name" , filtering: false },
-    { title: "Customer Email", field: "avg_rating", searchable : false , filtering: false },
-    { title: "Property Name", field: "location", searchable : false , filtering: false },
-    { title: "Address", field: "is_owner", searchable : false , filtering: false}
+    { title: "Reservation Date", field: "Reservation_Date" , filtering: false },
+    { title: "Customer Email", field: "Customer_Email", searchable : false , filtering: false },
+    { title: "Property Name", field: "Property_Name", searchable : false , filtering: false },
+    { title: "Address", field: "Address", searchable : false , filtering: false}
   ];
 
 function Dashboard() {
