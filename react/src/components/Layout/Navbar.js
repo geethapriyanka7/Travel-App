@@ -19,7 +19,7 @@ export default function Navbar(props) {
           {(props.email !== null) ? 
           <div style={{ color: 'white', marginRight:"15%" }}>
           <Link  to ={'/ah/'+props.email} state={{ email: props.email }}><Button style={{ color: 'white', marginRight:50}}>Dashboard</Button></Link>           
-          <Link  to ={'/admins'}><Button style={{ color: 'white'}}>Logout</Button></Link>
+          <Link  to ={'/'}><Button style={{ color: 'white'}}>Logout</Button></Link>
           </div> : 
           
           <div style={{ color: 'white', marginRight:"15%" }}>

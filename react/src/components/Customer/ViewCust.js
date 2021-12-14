@@ -3,6 +3,7 @@ import Table from "../Layout/Table";
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/Navbar';
 import Button from '@mui/material/Button'
+import {Link} from 'react-router-dom'
 
 const comonscol = [
     { title: "Customer Name", field: "customer_name" , filtering: false },
@@ -14,7 +15,8 @@ const comonscol = [
 
 function Dashboard() {
 
-    const [data,setData] = useState({})
+  const email = useLocation().state.email  
+  const [data,setData] = useState({})
 
     useEffect(() => {
         fetch("http://localhost:5000/vc")
@@ -40,13 +42,13 @@ function Dashboard() {
 
     
     return (
-      <div> <Navbar />
+      <div> <Navbar email={email} />
         <div className='container'style={{ marginTop: '5%'}}>
           <Table col={comonscol} data={data} heading = "View Customers" pl = "Name" filter= {false} />
 
         </div>
         <div align = "center">
-            <Button className='ac' variant='text'>Back</Button>  
+        <Link  to ={'/ah/'+email} state={{ email: email }}>   <Button className='ac' variant='text'>Back</Button> </Link>  
         </div>
       </div>
     )

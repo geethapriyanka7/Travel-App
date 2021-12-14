@@ -3,6 +3,7 @@ import Table from "../Layout/Table"
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/Navbar';
 import Button from '@mui/material/Button';
+import {Link} from 'react-router-dom'
 
 const comonscol = [
     { title: "ID", field: "ID" , filtering: false },
@@ -14,6 +15,8 @@ const comonscol = [
 
 
 export default function ViewAp() {
+  console.log(useLocation())
+  const email = useLocation().state.email
 
     const [data,setData] = useState({})
 
@@ -46,13 +49,14 @@ export default function ViewAp() {
 
 
     return (
-        <div> <Navbar />
+        <div> <Navbar email={email} />
         <div className='container' style={{ marginTop: '5%'}}>
       <Table col={comonscol} data={data} heading = "View Airports" pl = "ID" filter= {true} />
 
         </div>
         <div align = "center">
-            <Button className='ac' variant='text'>Back</Button>  
+        <Link  to ={'/ah/'+email} state={{ email: email }}><Button className='ac' variant='text'>Back</Button>  
+        </Link>
         </div>
 
         </div>

@@ -43,7 +43,7 @@ export default function Register(){
 
             <div align = "center">
             <br></br>
-                <Link to="/l"><Button className='reg' variant='text'>Back</Button></Link> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Link to="/owner"><Button className='reg' variant='text'>Back</Button></Link> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <Button className='reg' variant = 'text'><b>Create Account</b></Button>  
             </div>
         </div>

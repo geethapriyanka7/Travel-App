@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "Pri@12364"
+app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()

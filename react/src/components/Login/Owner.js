@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     const [passerror,setPas] = useState()
     
     useEffect(() => {
-        fetch("http://localhost:5000/customer")
+        fetch("http://localhost:5000/owner")
     .then(response => response.text ())
     .then(text => {
       try {
@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
         <div> <Navbar email = {null}/>
 
         <div  align="center" style={{ marginTop: '7%'}}>
-            <h1><b>Customer Login</b></h1>
+            <h1><b>Owner Login</b></h1>
         </div>
         <form className={classes.root} onSubmit={handleSubmit}>
         <TextField
@@ -116,8 +116,8 @@ const useStyles = makeStyles(theme => ({
             <h3><b>Not Signed Up?</b></h3>
         </div>
         <div  align="center">
-            {/* <Link to="/cao"><Button className='reg' variant = 'text'>Create Account as Owner</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
-            <Link to="/cac"><Button className='reg' variant='text'>Create Account as Customer</Button></Link>
+            <Link to="/cao"><Button className='reg' variant = 'text'>Create Account as Owner</Button></Link>
+            {/* <Link to="/cac"><Button className='reg' variant='text'>Create Account as Customer</Button></Link> */}
         </div>
     
         </div>

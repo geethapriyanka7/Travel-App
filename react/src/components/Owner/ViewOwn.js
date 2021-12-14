@@ -3,6 +3,7 @@ import Table from "../Layout/Table";
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/Navbar';
 import Button from '@mui/material/Button'
+import {Link} from 'react-router-dom'
 
 const comonscol = [
     { title: "Owner Name", field: "owner_name" , filtering: false},
@@ -13,6 +14,7 @@ const comonscol = [
 
   function Dashboard() {
 
+    const email = useLocation().state.email
     const [data,setData] = useState({})
 
     useEffect(() => {
@@ -39,13 +41,14 @@ const comonscol = [
 
     
     return (
-      <div> <Navbar />
+      <div> <Navbar  email={email}/>
         <div className='container' style={{ marginTop: '5%'}}>
       <Table col={comonscol} data={data} heading = "View Owners" pl = "Name" filter= {false} />
 
         </div>
         <div align = "center">
-          <Button className='ac' variant='text'>Back</Button>  
+        <Link  to ={'/ah/'+email} state={{ email: email }}><Button className='ac' variant='text'>Back</Button>  
+        </Link>
         </div>
       </div>
     )

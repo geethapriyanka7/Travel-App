@@ -2,7 +2,7 @@
     background-color: #2E3B55 !important;
     top: 50px !important;
     border: none !important;
-    color: rgb(223, 217, 217) !important;
+    color: white!important;
     border-radius: 20px  !important;
     padding: 15px 32px !important;
     text-align: center !important;
@@ -10,6 +10,6 @@
     text-decoration: none !important;
     display: inline-block !important;
     font-size: 20px !important;
-    margin: 4px 2px !important;
+    margin: 10px 2px !important;
     cursor: pointer !important; 
 }

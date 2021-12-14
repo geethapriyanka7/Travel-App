@@ -12,6 +12,7 @@ import DeleteOwner from './components/Owner/DeleteOwner'
 import ViewAp from './components/Airport/ViewAp';
 import LogAd from './components/Login/LogAd';
 import Customer from './components/Login/Customer'
+import Owner from './components/Login/Owner'
 import AdminHome from './components/Admin/AdminHome'
 import CustomerHome from './components/Customer/CustomerHome'
 import AdminProcessDate from './components/Admin/AdminProcessDate'
@@ -39,15 +40,16 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Dashboard/>}/>
           <Route path="/a" element={<Test/>}/>
-          <Route path="/vc" element={<ViewCust/>}/>
-          <Route path="/vo" element={<ViewOwn/>}/>
-          <Route path="/val" element={<ViewAirl/>}/>
-          <Route path="/vap" element={<ViewAp/>}/>
+          <Route path="/vc/:id" element={<ViewCust/>}/>
+          <Route path="/vo/:id" element={<ViewOwn/>}/>
+          <Route path="/val/:id" element={<ViewAirl/>}/>
+          <Route path="/vap/:id" element={<ViewAp/>}/>
           <Route path="/vf" element={<ViewFlights/>}/>
           <Route path="/oh" element={<OwnerHome/>}/>
           <Route path="/do" element={<DeleteOwner/>}/>
           <Route path="/admins" element={<LogAd/>}/>
           <Route path="/customer" element={<Customer/>}/>
+          <Route path="/owner" element={<Owner/>}/>
           <Route path="/ah/:id" element={<AdminHome/>}/>
           <Route path="/ch" element={<CustomerHome/>}/>
           <Route path="/apd" element={<AdminProcessDate/>}/>
