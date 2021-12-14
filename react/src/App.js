@@ -45,13 +45,13 @@ function App() {
           <Route path="/val/:id" element={<ViewAirl/>}/>
           <Route path="/vap/:id" element={<ViewAp/>}/>
           <Route path="/vf" element={<ViewFlights/>}/>
-          <Route path="/oh" element={<OwnerHome/>}/>
+          <Route path="/oh/:id" element={<OwnerHome/>}/>
           <Route path="/do" element={<DeleteOwner/>}/>
           <Route path="/admins" element={<LogAd/>}/>
           <Route path="/customer" element={<Customer/>}/>
           <Route path="/owner" element={<Owner/>}/>
           <Route path="/ah/:id" element={<AdminHome/>}/>
-          <Route path="/ch" element={<CustomerHome/>}/>
+          <Route path="/ch/:id" element={<CustomerHome/>}/>
           <Route path="/apd" element={<AdminProcessDate/>}/>
           <Route path="/sf" element={<ScheduleFlight/>}/>
           <Route path="/ap" element={<AddProp/>}/>

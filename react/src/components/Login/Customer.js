@@ -73,7 +73,7 @@ const useStyles = makeStyles(theme => ({
       setPas(pser)
     };
   
-    // if(passerror === false) return <Navigate  to ={'/l/'+email} state={{ email: email }}  />
+    if(passerror === false) return <Navigate  to ={'/ch/'+email} state={{ email: email }}  />
 
 
 

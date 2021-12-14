@@ -2,15 +2,16 @@ import React from 'react'
 import Button from '@mui/material/Button';
 import './OwnerHome.css';
 import { useLocation } from 'react-router-dom';
-import Navbar from '../Layout/Navbar';
+import Navbar from '../Layout/NavbarOwn';
 
 
 export default function Test() {
+    const email = useLocation().state.email
 
     return (
-        <div> <Navbar />
-
-        <div  align="center" style={{ marginTop: '5%'}}>
+        <div> 
+            <Navbar email = {email}/>
+        <div  align="center" style={{ marginTop: '7%'}}>
             <h1>Welcome, Owner!</h1>
          </div>
         <div align="center">
