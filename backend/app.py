@@ -67,7 +67,7 @@ def index():
         return json.dumps(json_data, default = str)
 
 
-@app.route("/remove_owner", methods = ['POST'])
+@app.route("/do", methods = ['POST'])
 @cross_origin()
 def index1():
         cur = mysql.connection.cursor()
