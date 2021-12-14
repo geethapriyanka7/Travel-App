@@ -14,7 +14,8 @@ export default function Dashboard() {
             <br></br><br></br>
             <div align="center" style={{marginLeft:"0%"}}>
             <Link  to ={'/admins'}><Button variant="outlined" size="large" style={{background: '#2E3B55', color:"white"}}>ADMIN</Button></Link>
-            <Link  to ={'/l'}><Button variant="outlined" size="large" style={{marginLeft:"5%", background: '#2E3B55', color:"white"}} >CLIENT</Button></Link>
+            <Link  to ={'/customer'}><Button variant="outlined" size="large" style={{marginLeft:"5%", background: '#2E3B55', color:"white"}} >CUSTOMER</Button></Link>
+            <Link  to ={'/owner'}><Button variant="outlined" size="large" style={{marginLeft:"5%", background: '#2E3B55', color:"white"}} >OWNER</Button></Link>
             </div>
             <br></br><br></br><br></br><br></br>
             {/* <div align="center">

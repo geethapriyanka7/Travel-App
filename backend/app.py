@@ -169,7 +169,7 @@ def index7():
         cur.close()
         return json.dumps(json_data)
 
-@app.route("/clients")
+@app.route("/l")
 @cross_origin()
 def index8():
         cur = mysql.connection.cursor()
