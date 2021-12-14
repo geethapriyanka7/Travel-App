@@ -67,7 +67,7 @@ def index():
         return json.dumps(json_data, default = str)
 
 
-@app.route("/remove_owner", methods = ['POST'])
+@app.route("/do", methods = ['POST'])
 @cross_origin()
 def index1():
         cur = mysql.connection.cursor()
@@ -266,23 +266,28 @@ def index11():
         cur.close()
         return None
 
-@app.route("/register_customer", methods=["POST"])
+@app.route("/cac", methods=["POST"])
 @cross_origin()
 def index12():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call register_customer('"+data['email']+"', '"+data['first_name']+"', '"+data['last_name']+"', '"+data['password']+"', '"+data['phone_number']+"', '"+data['cc_number']+"', '"+data['cvv']+"', '"+data['exp_data']+"', '"+data['location']+"');"
+        pno, cc_number = data['phone_number'], data['cc_number']
+        pno = pno[:3] + '-' + pno[3:6] + '-' + pno[6:]
+        cc_number = cc_number[:4] + ' ' + cc_number[4:8] + ' ' + cc_number[8:12] + cc_number[12:]
+        cmd = "call register_customer('"+data['email']+"', '"+data['first_name']+"', '"+data['last_name']+"', '"+data['password']+"', '"+pno+"', '"+cc_number+"', '"+data['cvv']+"', '"+data['exp_data']+"', '"+data['location']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
         cur.close()
         return None 
 
-@app.route("/register_owner", methods = ["POST"])
+@app.route("/cao", methods = ["POST"])
 @cross_origin()
 def index13():
         cur = mysql.connection.cursor()
         data = request.get_json()
+        pno, cc_number = data['phone_number']
+        pno = pno[:3] + '-' + pno[3:6] + '-' + pno[6:]
         cmd = "call register_owner('"+data['email']+"', '"+data['first_name']+"', '"+data['last_name']+"', '"+data['password']+"', '"+data['phone_number']+"');"
         cur.execute(cmd)
         #cur.fetchall()
@@ -322,7 +327,7 @@ def index14():
 def view_cancel_flight():
         cur = mysql.connection.cursor()
         login_data = request.get_json()
-        cmd = "select * from flight f right join book b on (f.Airline_Name, f.Flight_Num)=(b.Airline_Name, b.Flight_Num) where b.Customer = '"+data[0]['customer_email']+"';"
+        cmd = "select * from flight f right join book b on (f.Airline_Name, f.Flight_Num)=(b.Airline_Name, b.Flight_Num) where b.Customer = '"+data['customer_email']+"';"
         cur.execute(cmd)
         x, json_data = {'time': time}, []
         json_data.append(x)
@@ -430,7 +435,7 @@ def index18():
         return None
 
 
-@app.route("/customer_rate_owner")
+@app.route("/cro")
 @cross_origin()
 def cro():
         cur = mysql.connection.cursor()
@@ -445,7 +450,7 @@ def cro():
         cur.close()
         return json.dumps(json_data, default = str)
 
-@app.route("/customer_rate_owner", methods = ["POST"])
+@app.route("/cro", methods = ["POST"])
 @cross_origin()
 def index19():
         cur = mysql.connection.cursor()
@@ -473,7 +478,6 @@ def index200():
 @app.route("/vpr")
 @cross_origin()
 def index20():
-        
         cur2 = mysql.connection.cursor()
         cmd2 = "select Property_Name, Start_Date, End_Date, Customer_Phone_num, Customer_Email, Total_Booking_Cost, Review, Rating_Score from view_individual_property_reservations;"
         cur2.execute(cmd2)
@@ -486,12 +490,12 @@ def index20():
         cur2.close()
         return json.dumps(json_data, default = str)
 
-@app.route("/owner_add_property", methods = ["POST"])
+@app.route("/ap", methods = ["POST"])
 @cross_origin()
 def index21():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call add_property('"+data[0]['property_name']+"', '"+data[0]['owner_email']+"', '"+data[0]['description']+"', '"+data[0]['capacity']+"', '"+data[0]['cost']+"', '"+data[0]['street']+"', '"+data[0]['city']+"', '"+data[0]['state']+"', '"+data[0]['zip']+"', '"+data[0]['nearest_airport_id']+"', '"+data[0]['dist_to_airport']+"');"
+        cmd = "call add_property('"+data['property_name']+"', '"+data['owner_email']+"', '"+data['description']+"', '"+data['capacity']+"', '"+data['cost']+"', '"+data['street']+"', '"+data['city']+"', '"+data['state']+"', '"+data['zip']+"', '"+data['nearest_airport_id']+"', '"+data['dist_to_airport']+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
