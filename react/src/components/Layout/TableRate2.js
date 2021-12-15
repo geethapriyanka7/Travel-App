@@ -53,7 +53,8 @@ const Table2 = props => {
       
   };
 
-  const handleDB =()=>{
+  const handleDB =(e)=>{
+    e.preventDefault()
     var myParams ={
         'property_name': props.data[selectedRow].Property_Name,
         'owner_email': props.data[selectedRow].Owner_Email,
@@ -121,7 +122,6 @@ return (
        <TextField
        label="Rating"
        variant="filled"
-       type="number"
        required
        inputProps = {{pattern:"[1-5]{1}"}}
        value={rate}
