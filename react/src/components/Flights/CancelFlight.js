@@ -19,7 +19,7 @@ function Dashboard() {
     const [data1,setData1] = useState({})
 
     useEffect(() => {
-        fetch("http://localhost:5000/rf")
+        fetch("http://localhost:5000/cf")
     .then(response => response.text ())
     .then(text => {
       try {

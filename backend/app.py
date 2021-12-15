@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
+app.config['MYSQL_PASSWORD'] = "Pri@12364"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
@@ -327,7 +327,7 @@ def index14():
 def view_cancel_flight():
         cur = mysql.connection.cursor()
         login_data = request.get_json()
-        cmd = "select * from flight f right join book b on (f.Airline_Name, f.Flight_Num)=(b.Airline_Name, b.Flight_Num) where b.Customer = '"+data['customer_email']+"';"
+        cmd = "select * from flight f right join book b on (f.Airline_Name, f.Flight_Num)=(b.Airline_Name, b.Flight_Num) where b.Customer = '"+login_data['customer_email']+"';"
         cur.execute(cmd)
         x, json_data = {'time': time}, []
         json_data.append(x)

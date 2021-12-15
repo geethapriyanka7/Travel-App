@@ -24,7 +24,7 @@ export default function Test() {
         </div>
         <div align="center">
         <Link to={'/orc/'+email} state={{ email: email }}> <Button className='big' variant='text'>Rate Customer</Button></Link>
-        <Link to={'/do/'+email} state={{ email: email }}> <Button className='big' variant='text'>Delect Account</Button></Link>
+        <Link to={'/do/'+email} state={{ email: email }}> <Button className='big' variant='text'>Delete Account</Button></Link>
         </div>
         </div>
     )
