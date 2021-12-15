@@ -134,13 +134,13 @@ export default function Test() {
              value={city}
              onChange={e => setCity(e.target.value)}/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             
-            <TextField  label="State" variant="filled" pattern="[A-Z]{2}"
+            <TextField  label="State" variant="filled" inputProps = {{ pattern:"[A-Z]{2}"}}
                type="text"
                required
                value={state}
                onChange={e => setState(e.target.value)}/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             
-            <TextField  label="Zip" variant="filled" pattern="[0-9]{5}" type="number"
+            <TextField  label="Zip" variant="filled" inputProps={{ pattern:"[0-9]{5}"}} type="number"
                required
                value={zip}
                onChange={e => setZip(e.target.value)}/>

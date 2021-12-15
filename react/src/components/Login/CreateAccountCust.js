@@ -47,8 +47,8 @@ export default function Register(){
                 <TextField id="filled-basic" label="Email" variant="filled" type="email" required/>
                 <TextField id="filled-basic" label="Password" variant="filled" type="password" required/>
                 <TextField id="filled-basic" label="Confirm" variant="filled" type="password"required/>
-                <TextField id="filled-basic" label="Phone Number" pattern="[0-9]{10}" variant="filled" type="number" required/>
-                <TextField id="filled-basic" label="Card Number" variant="filled" pattern="[0-9]{16}" type="number" required/>
+                <TextField id="filled-basic" label="Phone Number" inputProps={{ pattern:"[0-9]{10}"}} variant="filled" type="number" required/>
+                <TextField id="filled-basic" label="Card Number" variant="filled" inputProps={{ pattern:"[0-9]{16}"}} type="number" required/>
                 <TextField 
                 id="filled-basic" 
                 label="CVV" variant="filled" type="number"  inputProps={{ inputMode: 'numeric', pattern: '[0-9]{3}' }} />

@@ -28,11 +28,11 @@ export default function Test() {
             <TextField id="filled-basic" label="$ Per Person" variant="filled" />
         </div>
         <div align = "center">
-            <TextField id="filled-basic" label="From Airport" variant="filled" pattern="[A-Z]{3}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <TextField id="filled-basic" label="From Airport" variant="filled" inputProps={{ pattern:"[A-Z]{3}"}}/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <TextField id="filled-basic" label="Capacity" variant="filled" />
         </div>
         <div align = "center">
-            <TextField id="filled-basic" label="To Airport" variant="filled" pattern="[A-Z]{3}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <TextField id="filled-basic" label="To Airport" variant="filled" inputProps={{ pattern:"[A-Z]{3}"}}/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <TextField id="filled-basic" label="Current Date" variant="filled" />
         </div>
         <div align = "center">
