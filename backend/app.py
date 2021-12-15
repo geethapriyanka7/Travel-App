@@ -285,8 +285,9 @@ def index12():
         data = request.get_json()
         pno, cc_number = data['phone_number'], data['cc_number']
         pno = pno[:3] + '-' + pno[3:6] + '-' + pno[6:]
-        cc_number = cc_number[:4] + ' ' + cc_number[4:8] + ' ' + cc_number[8:12] + cc_number[12:]
+        cc_number = cc_number[:4] + ' ' + cc_number[4:8] + ' ' + cc_number[8:12] +' ' + cc_number[12:]
         cmd = "call register_customer('"+data['email']+"', '"+data['first_name']+"', '"+data['last_name']+"', '"+data['password']+"', '"+pno+"', '"+cc_number+"', '"+data['cvv']+"', '"+data['exp_data']+"', '"+data['location']+"');"
+        print(cmd)
         cur.execute(cmd)
         cur.fetchall()
         mysql.connection.commit()

@@ -163,7 +163,7 @@ export default function Test() {
         <div align = "center">
         <Link to={'/ah/'+email} state={{ email: email }}>
             <Button className='ac' variant='text'
-            onClick={() => { handleSubmit() }} >Back</Button></Link> 
+            >Back</Button></Link> 
           
         </div>
         </form>
