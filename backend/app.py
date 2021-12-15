@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "Pri@12364"
+app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
@@ -77,7 +77,7 @@ def index1():
         cur.fetchall()
         mysql.connection.commit()
         cur.close()
-        return "!"
+        return str(cur.rowcount)
 
 @app.route("/val")
 @cross_origin()
@@ -537,7 +537,7 @@ def index22():
 @cross_origin()
 def view_orc():
         cur = mysql.connection.cursor()
-        cmd = "SELECT reserve.Start_Date as Reservation_Date, reserve.Customer as Customer_Email,property.Property_Name, concat(Street,' ',City,' ',State,' ',Zip) as Address FROM travel_reservation_service.property, travel_reservation_service.reserve where property.Property_Name = reserve.Property_Name;"
+        cmd = "SELECT reserve.Owner_Email as owner_email, reserve.Start_Date as Reservation_Date, reserve.Customer as Customer_Email,property.Property_Name, concat(Street,' ',City,' ',State,' ',Zip) as Address FROM travel_reservation_service.property, travel_reservation_service.reserve where property.Property_Name = reserve.Property_Name;"
         cur.execute(cmd)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
@@ -553,12 +553,13 @@ def view_orc():
 def index23():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call owner_customer('"+data['property_name']+"','"+data['owner_email']+"', '"+data['customer_email']+"', '"+data['score']+"', '"+data ['current_data']+"');"
+        cmd = "call owner_rates_customer('"+data['owner_email']+"', '"+data['customer_email']+"',"+str(data['score'])+",'"+str(time)+"');"
+        # print(cmd)
         cur.execute(cmd)
-        #cur.fetchall()
+        cur.fetchall()
         mysql.connection.commit()
         cur.close()
-        return None
+        return str(cur.rowcount)
 
 if __name__ == '__main__':
     app.run(debug=True)

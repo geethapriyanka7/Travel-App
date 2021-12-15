@@ -17,10 +17,14 @@ export default function Test() {
          </div>
         <div align="center">
         <Link to={'/ap/'+email} state={{ email: email }}><Button className='gug' variant='text'>Add Property</Button>
+            </Link><br></br>
+            <Link to={'/orp/'+email} state={{ email: email }}><Button className='gug' variant='text'>Remove Property</Button>
             </Link>
+            
         </div>
         <div align="center">
-        <Link to={'/orp/'+email} state={{ email: email }}> <Button className='big' variant='text'>Remove Property</Button></Link>
+        <Link to={'/orc/'+email} state={{ email: email }}> <Button className='big' variant='text'>Rate Customer</Button></Link>
+        <Link to={'/do/'+email} state={{ email: email }}> <Button className='big' variant='text'>Delect Account</Button></Link>
         </div>
         </div>
     )

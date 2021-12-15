@@ -47,7 +47,7 @@ function App() {
           <Route path="/vap/:id" element={<ViewAp/>}/>
           <Route path="/vf" element={<ViewFlights/>}/>
           <Route path="/oh/:id" element={<OwnerHome/>}/>
-          <Route path="/do" element={<DeleteOwner/>}/>
+          <Route path="/do/:id" element={<DeleteOwner/>}/>
           <Route path="/admins" element={<LogAd/>}/>
           <Route path="/customer" element={<Customer/>}/>
           <Route path="/owner" element={<Owner/>}/>
@@ -69,7 +69,7 @@ function App() {
           <Route path="/cro/:id" element={<RateOwner/>}/>
           <Route path="/vpr/:id" element={<ViewPropRes/>}/>
           <Route path="/orp/:id" element={<OwnerRemProp/>}/>
-          <Route path="/orc" element={<RateCust/>}/>
+          <Route path="/orc/:id" element={<RateCust/>}/>
         </Routes>
       </header>
     </div>

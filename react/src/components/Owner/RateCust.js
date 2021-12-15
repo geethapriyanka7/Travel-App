@@ -1,8 +1,9 @@
 import React, { useEffect, useState} from 'react'
-import Table from "../Layout/Table";
+import Table from "../Layout/TableRate";
 import { useLocation } from 'react-router-dom';
-import Navbar from '../Layout/Navbar';
+import Navbar from '../Layout/NavbarOwn';
 import Button from '@mui/material/Button'
+import {Link} from 'react-router-dom'
 
 const comonscol = [
     { title: "Reservation Date", field: "Reservation_Date" , filtering: false },
@@ -14,15 +15,14 @@ const comonscol = [
 function Dashboard() {
 
     const [data,setData] = useState({})
-
+    const email = useLocation().state.email
     useEffect(() => {
         fetch("http://localhost:5000/orc")
     .then(response => response.text ())
     .then(text => {
       try {
-          const data = JSON.parse(text);
-          {Array.isArray(data) && data.map(group => group.avg_rating === null ? group.avg_rating = 0 : group.avg_rating)}
-          {Array.isArray(data) && data.map(group => group.is_owner === 0 ? group.is_owner = "No" : group.is_owner = "Yes")}
+          var data = JSON.parse(text);
+          data = Array.isArray(data) && data.filter(group => group.owner_email === email)
           setData(data)
           console.log(data)
           
@@ -35,18 +35,17 @@ function Dashboard() {
 
     },[])
 
-    
 
     
     return (
-      <div> <Navbar />
-        <div className='container'style={{ marginTop: '5%'}}>
-          <Table col={comonscol} data={data} heading = "Owners Rate Customers" filter= {false} />
+      <div> <Navbar email = {email} />
+        <div className='container'style={{ marginTop: '7%'}}>
+          <Table col={comonscol} data={data} heading = "Owners Rate Customers" email = {email}/>
 
         </div>
         <div align = "center">
-            <Button className='ac' variant='text'>Back</Button>  
-        </div>
+        <Link  to ={'/oh/'+email} state={{ email: email }}>    <Button className='ac' variant='text'>Back</Button>  
+        </Link></div>
       </div>
     )
 }
