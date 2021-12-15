@@ -288,7 +288,7 @@ def index13():
         data = request.get_json()
         pno, cc_number = data['phone_number']
         pno = pno[:3] + '-' + pno[3:6] + '-' + pno[6:]
-        cmd = "call register_owner('"+data['email']+"', '"+data['first_name']+"', '"+data['last_name']+"', '"+data['password']+"', '"+data['phone_number']+"');"
+        cmd = "call register_owner('"+data['email']+"', '"+data['first_name']+"', '"+data['last_name']+"', '"+data['password']+"', '"+pno+"');"
         cur.execute(cmd)
         #cur.fetchall()
         mysql.connection.commit()
