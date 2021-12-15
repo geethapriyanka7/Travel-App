@@ -100,6 +100,7 @@ return (
        variant="filled"
        type="number"
        required
+       inputProps = {{pattern:"[1-5]{1}"}}
        value={rate}
        onChange={e => setRate(e.target.value)}/>
         <br></br>

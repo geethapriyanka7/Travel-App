@@ -100,6 +100,7 @@ if(done !== null) return <Navigate  to ={'/oh/'+email} state={{ email: email }} 
        variant="filled"
        type="number"
        required
+       inputProps = {{pattern:"[1-5]{1}"}}
        value={rate}
        onChange={e => setRate(e.target.value)}/>
         <br></br>
