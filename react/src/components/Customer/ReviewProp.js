@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import Table2 from "../Layout/Table2";
+import Table2 from "../Layout/TableReview";
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/NavbarCust';
 import Button from '@mui/material/Button'
@@ -23,17 +23,10 @@ const comonscol = [
     .then(text => {
       try {
           const data = JSON.parse(text);
-          const data1 = JSON.parse(text);
+          const data1 = Array.isArray(data) && data.filter(group =>  group.Customer === email)
           setData1(data1)
-          var tz = new Set()
-          
-          {Array.isArray(data) && data.map(group =>  tz.add(group.airline))}
-
-          tz = [...tz]    
-        
-          {Array.isArray(data) && data.map(group => group.airline = tz.indexOf(group.airline))}
           setData(data)
-          console.log(data)
+          console.log(data1)
           
           // Do your JSON handling here
       } catch(err) {
@@ -49,7 +42,7 @@ const comonscol = [
     return (
       <div>  <Navbar email = {email}/>
         <div className='container'style={{ marginTop: '5%'}}>
-      <Table2 col={comonscol} data={data} heading = "Review Property" filter= {false} />
+      <Table2 col={comonscol} data={data1} heading = "Review Property" filter= {false} email={email} />
 
         </div>
         <div align = "center">

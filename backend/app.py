@@ -416,7 +416,7 @@ def index17():
 @cross_origin()
 def view_review_property():
         cur = mysql.connection.cursor()
-        cmd = "SELECT reserve.Start_Date as reservation_date, property.Property_Name, property.Owner_Email, concat(Street,' ',City,' ',State,' ',Zip) as Address FROM travel_reservation_service.property, travel_reservation_service.reserve where property.Property_Name = reserve.Property_Name;"
+        cmd = "SELECT Customer, reserve.Start_Date as reservation_date, property.Property_Name, property.Owner_Email, concat(Street,' ',City,' ',State,' ',Zip) as Address FROM travel_reservation_service.property, travel_reservation_service.reserve where property.Property_Name = reserve.Property_Name;"
         cur.execute(cmd)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
@@ -432,12 +432,12 @@ def view_review_property():
 def index18():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call customer_review_property('"+data['property_name']+"', '"+data['owner_email']+"', '"+data['customer_email']+"', '"+data['content']+"', '"+data['score']+"', '"+data['current_date']+"');"
+        cmd = "call customer_review_property('"+data['property_name']+"', '"+data['owner_email']+"', '"+data['customer_email']+"', '"+data['content']+"', '"+str(data['score'])+"', '"+str(time)+"');"
         cur.execute(cmd)
-        #cur.fetchall()
+        cur.fetchall()
         mysql.connection.commit()
         cur.close()
-        return None
+        return str(cur.rowcount)
 
 
 @app.route("/cro")
