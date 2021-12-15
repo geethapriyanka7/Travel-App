@@ -27,7 +27,7 @@ const comonscol = [
           const data = JSON.parse(text);
           {Array.isArray(data) && data.map(group => group.cost_per_night = "$"+ (group.cost_per_night))}
           {Array.isArray(data) && data.map(group => group.average_rating_score === null ? group.average_rating_score = 0  :group.average_rating_score )}
-
+          
           setData(data)
           console.log(data)
           
