@@ -37,7 +37,7 @@ export default function Register(){
                 <br></br>
                 <TextField id="filled-basic" label="Confirm" variant="filled" type="password" required/>
                 <br></br>
-                <TextField id="filled-basic" label="Phone Number" inputProps = {{ pattern:"[0-9]{10}"}} type="number" variant="filled" required/>
+                <TextField id="filled-basic" label="Phone Number" inputProps = {{ pattern:"[0-9]{10}"}} variant="filled" required/>
                 <br></br>
             </Box>
 

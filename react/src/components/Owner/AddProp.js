@@ -140,7 +140,7 @@ export default function Test() {
                value={state}
                onChange={e => setState(e.target.value)}/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             
-            <TextField  label="Zip" variant="filled" inputProps={{ pattern:"[0-9]{5}"}} type="number"
+            <TextField  label="Zip" variant="filled" inputProps={{ pattern:"[0-9]{5}"}}
                required
                value={zip}
                onChange={e => setZip(e.target.value)}/>
