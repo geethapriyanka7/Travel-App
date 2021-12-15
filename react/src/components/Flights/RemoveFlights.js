@@ -50,9 +50,9 @@ function Dashboard() {
 
     
     return (
-      <div> <Navbar />
+      <div> <Navbar email={email} />
         <div className='container' style={{ marginTop: '5%'}}>
-      <Table2 col={comonscol} data={data} data1={data1} heading = "Remove Flights" pl = "Flight Number" filter= {true} />
+      <Table2 col={comonscol} data={data} data1={data1} heading = "Remove Flights" pl = "Flight Number" filter= {true} email={email} />
 
         </div>
         <div align = "center">

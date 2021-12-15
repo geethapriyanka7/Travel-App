@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import Table2 from "../Layout/Table2"
+import Table2 from "../Layout/TableRate2"
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/NavbarCust';
 import Button from '@mui/material/Button'
@@ -19,31 +19,23 @@ const comonscol = [
     const [data1,setData1] = useState({})
 
     useEffect(() => {
-        fetch("http://localhost:5000/crp")
-    .then(response => response.text ())
-    .then(text => {
-      try {
-          const data = JSON.parse(text);
-          const data1 = JSON.parse(text);
-          setData1(data1)
-          var tz = new Set()
-          
-          {Array.isArray(data) && data.map(group =>  tz.add(group.airline))}
-
-          tz = [...tz]    
+      fetch("http://localhost:5000/cro")
+  .then(response => response.text ())
+  .then(text => {
+    try {
+        var data = JSON.parse(text);
+        data = Array.isArray(data) && data.filter(group => group.Customer === email)
+        setData(data)
+        console.log(data)
         
-          {Array.isArray(data) && data.map(group => group.airline = tz.indexOf(group.airline))}
-          setData(data)
-          console.log(data)
-          
-          // Do your JSON handling here
-      } catch(err) {
-          console.log(err)
-         // It is text, do you text handling here
-      }
-    })
+        // Do your JSON handling here
+    } catch(err) {
+        console.log(err)
+       // It is text, do you text handling here
+    }
+  })
 
-    },[])
+  },[])
 
     
 
@@ -51,7 +43,7 @@ const comonscol = [
     return (
       <div>  <Navbar email = {email}/>
         <div className='container'style={{ marginTop: '5%'}}>
-      <Table2 col={comonscol} data={data} heading = "Rate Owner" filter= {false} />
+      <Table2 col={comonscol} data={data} heading = "Rate Owner" filter= {false} email = {email}/>
 
         </div>
         <div align = "center">

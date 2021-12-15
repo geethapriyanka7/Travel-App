@@ -13,7 +13,7 @@ export default function Test() {
     console.log(email)
     
     return (
-        <div> <Navbar />
+        <div> <Navbar email={email} />
 
         <div  align="center" style={{ marginTop: '7.5%'}}>
             <h1>Schedule Flight</h1>
