@@ -18,9 +18,12 @@ export default function AdminHome () {
         </div>
         
         <div align="center">
-            <Button className='ki' variant='text'>Schedule<br></br>Flight</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button className='ki' variant='text'>Remove<br></br>Flight</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button className='ki' variant='text'>Process<br></br>Date</Button>
+        <Link to={'/sf/'+email} state={{ email: email }}>
+            <Button className='ki' variant='text'>Schedule<br></br>Flight</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Link to={'/rf/'+email} state={{ email: email }}>
+            <Button className='ki' variant='text'>Remove<br></br>Flight</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Link to={'/apd/'+email} state={{ email: email }}>
+            <Button className='ki' variant='text'>Process<br></br>Date</Button></Link>
         </div>
         <div  align="center">
         <Link to={'/vap/'+email} state={{ email: email }} ><Button className='ki' variant='text'>View<br></br>Airport</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

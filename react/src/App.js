@@ -55,12 +55,12 @@ function App() {
           <Route path="/ch/:id" element={<CustomerHome/>}/>
           <Route path="inp/:id" element={<InputProp/>} />
           <Route path="/apd/:id" element={<AdminProcessDate/>}/>
-          <Route path="/sf" element={<ScheduleFlight/>}/>
+          <Route path="/sf/:id" element={<ScheduleFlight/>}/>
           <Route path="/ap/:id" element={<AddProp/>}/>
           <Route path="/cac" element={<CreateAccountCust/>}/>
           <Route path="/cao" element={<CreateAccountOwner/>}/>
           <Route path="/vp/:id" element={<ViewProp/>}/>
-          <Route path="/rf" element={<RemoveFlights/>}/>
+          <Route path="/rf/:id" element={<RemoveFlights/>}/>
           <Route path="/cf/:id" element={<CancelFlight/>}/>
           <Route path="/bf/:id" element={<BookFlight/>}/>
           <Route path="/rp/:id" element={<ReserveProp/>}/>

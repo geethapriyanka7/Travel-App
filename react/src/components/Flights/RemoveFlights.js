@@ -3,6 +3,7 @@ import Table2 from "../Layout/Table2";
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/Navbar';
 import Button from '@mui/material/Button'
+import {Link} from 'react-router-dom'
 
 const comonscol = [
     { title: "Airline", field: "airline" , searchable : false , 
@@ -13,7 +14,8 @@ const comonscol = [
   ];
 
 function Dashboard() {
-
+    const email = useLocation().state.email
+    console.log(email)
     const [data,setData] = useState({})
     const [data1,setData1] = useState({})
 
@@ -54,7 +56,8 @@ function Dashboard() {
 
         </div>
         <div align = "center">
-            <Button className='ac' variant='text'>Back</Button>  
+        <Link to={'/ah/'+email} state={{ email: email }}>
+            <Button className='ac' variant='text'>Back</Button></Link> 
         </div>
       </div>
     )
