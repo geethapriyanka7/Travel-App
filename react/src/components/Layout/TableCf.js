@@ -3,7 +3,6 @@ import MaterialTable from "material-table";
 import Box from '@mui/material/Box';
 import { Button } from "@material-ui/core";
 import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
 import {Link, Navigate} from 'react-router-dom'
 
 const Table2 = props => {
@@ -14,7 +13,6 @@ const Table2 = props => {
     updatedAt: new Date()
   });
 
-  const email = props.email
 
   useEffect(() => {
     gridData.resolve();
@@ -22,41 +20,40 @@ const Table2 = props => {
   }, [gridData]);
 
   const [selectedRow, setSelectedRow] = useState(null);
-  const [rate, setRate] = useState('');
   const [done, setDone] = useState(null);
 
   const handleSubmit = e => {
       setSelectedRow(e)
-    //   console.log(props.data[e])
+      console.log(props.data[e])
       
   };
 
   const handleDB =()=>{
-    var myParams ={
-        'property_name': props.data[selectedRow].Property_Name,
-        'owner_email': props.email,
-        'customer_email': props.data[selectedRow].Customer_Email,
-        'score': parseInt(rate),
-    } 
-  
-    console.log(myParams,parseInt(rate))
+    // console.log(props.data[selectedRow])
+    var myParams = props.data[selectedRow]
+    console.log(myParams)
 
     if (myParams !== "") {
-        axios.post('http://localhost:5000/orc', myParams)
+        axios.post('http://localhost:5000/cf', myParams)
             .then(function(response){
                 console.log(response);
                 setDone(1)
+        
+
        //Perform action based on response
+        
         })
         .catch(function(error){
             console.log(error);
        //Perform action based on error
         });
     }
-    
+   
 };
+    const email = props.email
 
-if(done !== null) return <Navigate  to ={'/oh/'+email} state={{ email: email }}  />
+    {if (done === 1) return <Navigate  to ={'/ch/'+email} state={{ email: email}} />}
+
 
   return (
 
@@ -75,8 +72,7 @@ if(done !== null) return <Navigate  to ={'/oh/'+email} state={{ email: email }} 
             top: "0"
           },
           maxBodyHeight: "400px",
-          filtering: false,
-          search: false,
+          filtering: props.filter,
           rowStyle: rowData => ({
             backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF'
           })
@@ -93,23 +89,11 @@ if(done !== null) return <Navigate  to ={'/oh/'+email} state={{ email: email }} 
       </Box>
       <div align="center"> 
       {(selectedRow !== null)?
-      <div>
-          <br></br>
-       <TextField
-       label="Rating"
-       variant="filled"
-       inputProps = {{pattern:"[1-5]{1}"}}
-       required
-       value={rate}
-       onChange={e => setRate(e.target.value)}/>
-        <br></br>
-      <Button type="submit" onClick={() => { handleDB() }} 
-      style={{ background: '#2E3B55', color: "white", width: "10%", marginTop:"2%"}}>
-          Submit
-        </Button> 
-        
-        </div>: 
-        <h1></h1>}
+           <Button type="submit" onClick={() => { handleDB() }} 
+           style={{ background: '#2E3B55', color: "white", width: "10%", marginTop:"2%"}}>
+               Remove</Button>: 
+               <h1></h1>}
+      
       </div>
       </div> 
 

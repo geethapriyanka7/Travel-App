@@ -18,6 +18,7 @@ app.config['MYSQL_PASSWORD'] = "Nincompoop1@"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
+custemail=''
 
 mysql = MySQL(app)
 
@@ -258,17 +259,24 @@ def indexrf1():
 #         cur.close()
 #         return None
 
+
+@app.route("/sf")
+@cross_origin()
+def sendtime():
+        return str(time)
+
 @app.route("/sf", methods=["POST"])
 @cross_origin()
 def index11():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call schedule_flight('"+data['flight_num']+"', '"+data['airline_name']+"', '"+data['from_airport']+"', '"+data['departure_time']+"', '"+data['arrival_time']+"', '"+data['flight_date']+"', '"+data['cost']+"', '"+data['capacity']+"', '"+data['current_date']+"');"
+        cmd = "call schedule_flight('"+data['flight_num']+"', '"+data['airline_name']+"', '"+data['from_airport']+"', '"+data['to_airport']+"', '"+data['departure_time']+"', '"+data['arrival_time']+"', '"+data['flight_date']+"', "+str(data['cost'])+", "+str(data['capacity'])+", '"+str(time)+"');"
         cur.execute(cmd)
-        #cur.fetchall()
+        cur.fetchall()
         mysql.connection.commit()        
         cur.close()
-        return None
+        print(cmd)
+        return str(cur.rowcount) 
 
 @app.route("/cac", methods=["POST"])
 @cross_origin()
@@ -280,10 +288,10 @@ def index12():
         cc_number = cc_number[:4] + ' ' + cc_number[4:8] + ' ' + cc_number[8:12] + cc_number[12:]
         cmd = "call register_customer('"+data['email']+"', '"+data['first_name']+"', '"+data['last_name']+"', '"+data['password']+"', '"+pno+"', '"+cc_number+"', '"+data['cvv']+"', '"+data['exp_data']+"', '"+data['location']+"');"
         cur.execute(cmd)
-        #cur.fetchall()
+        cur.fetchall()
         mysql.connection.commit()
         cur.close()
-        return None 
+        return str(cur.rowcount) 
 
 @app.route("/cao", methods = ["POST"])
 @cross_origin()
@@ -303,7 +311,7 @@ def index13():
 @cross_origin()
 def view_book_flight():
         cur = mysql.connection.cursor()
-        cmd = "select airline, flight_id, num_empty_seats from view_flight;"
+        cmd = "select airline, flight_id, num_empty_seats,seat_cost from view_flight;"
         cur.execute(cmd)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
@@ -319,22 +327,31 @@ def view_book_flight():
 def index14():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call book_flight('"+data['email']+"', '"+data['flight_num']+"', '"+data['airline_name']+"', '"+data['num_seats']+"', '"+data['current_date']+"');"
+        cmd = "call book_flight('"+data['email']+"', '"+data['flight_num']+"', '"+data['airline_name']+"', "+data['num_seats']+", '"+str(time)+"');"
+        print(cmd)
         cur.execute(cmd)
-        #cur.fetchall()
+        cur.fetchall()
         mysql.connection.commit()
         cur.close()
-        return None  
+        return str(cur.rowcount) 
 
-@app.route("/cf", methods=["POST"])
+@app.route("/ch", methods=["POST"])
+@cross_origin()
+def view_getemail():
+        global custemail 
+        custemail= request.get_json()
+        print(custemail)
+        return str(1)
+
+
+@app.route("/cf")
 @cross_origin()
 def view_cancel_flight():
+        print(custemail['email'])
         cur = mysql.connection.cursor()
-        login_data = request.get_json()
-        cmd = "select * from flight f right join book b on (f.Airline_Name, f.Flight_Num)=(b.Airline_Name, b.Flight_Num) where b.Customer = '"+login_data['customer_email']+"';"
+        cmd = "select * from flight f right join book b on (f.Airline_Name, f.Flight_Num)=(b.Airline_Name, b.Flight_Num) where b.Customer = '"+str(custemail['email'])+"';"
+        print(cmd)
         cur.execute(cmd)
-        x, json_data = {'time': time}, []
-        json_data.append(x)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
         json_data = []
@@ -349,18 +366,18 @@ def view_cancel_flight():
 def index15():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call cancel_flight_booking('"+data['email']+"', '"+data['flight_num']+"', '"+data['airline_name']+"', '"+data['current_date']+"');"
+        cmd = "call cancel_flight_booking('"+data['Customer']+"', '"+data['Flight_Num']+"', '"+data['Airline_Name']+"', '"+str(time)+"');"
         cur.execute(cmd)
-        #cur.fetchall()
+        cur.fetchall()
         mysql.connection.commit()
         cur.close()
-        return None
+        return str(cur.rowcount)
 
 @app.route("/rp")
 @cross_origin()
 def view_reserve():
         cur = mysql.connection.cursor()
-        cmd = "select property_name, owner_email, capacity from property;"
+        cmd = "select property_name, owner_email, capacity, Cost from property;"
         cur.execute(cmd)
         row_headers = [x[0] for x in cur.description]
         rv = cur.fetchall()
@@ -377,12 +394,13 @@ def view_reserve():
 def index16():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call reserve_property('"+data['property_name']+"', '"+data['owner_email']+"', '"+data['customer_email']+"', '"+data['start_date']+"', '"+data['end_date']+"', ''"+data['num_guests']+", '"+data['current_date']+"');"
+        cmd = "call reserve_property('"+data['property_name']+"', '"+data['owner_email']+"', '"+data['customer_email']+"', '"+data['start_date']+"', '"+data['end_date']+"', "+str(data['num_guests'])+",'"+str(time)+"');"
+        # print(cmd)
         cur.execute(cmd)
-        #cur.fetchall()
+        cur.fetchall()
         mysql.connection.commit()
         cur.close()
-        return None
+        return str(cur.rowcount)
 
 @app.route("/ccp")
 @cross_origin()
@@ -501,12 +519,13 @@ def index20():
 def index21():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        cmd = "call add_property('"+data['property_name']+"', '"+data['owner_email']+"', '"+data['description']+"', '"+data['capacity']+"', '"+data['cost']+"', '"+data['street']+"', '"+data['city']+"', '"+data['state']+"', '"+data['zip']+"', '"+data['nearest_airport_id']+"', '"+data['dist_to_airport']+"');"
+        cmd = "call add_property('"+data['property_name']+"', '"+data['owner_email']+"', '"+data['description']+"', "+str(data['capacity'])+", "+str(data['cost'])+", '"+data['street']+"', '"+data['city']+"', '"+data['state']+"', '"+data['zip']+"', '"+data['nearest_airport_id']+"', "+str(data['dist_to_airport'])+");"
+        print(cmd)
         cur.execute(cmd)
-        #cur.fetchall()
+        cur.fetchall()
         mysql.connection.commit()
         cur.close()
-        return None
+        return str(cur.rowcount)
 
 @app.route("/orp")
 @cross_origin()

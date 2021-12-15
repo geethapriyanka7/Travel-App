@@ -6,8 +6,9 @@ import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/NavbarOwn';
 import { Box } from '@material-ui/core'
 import './AddProp.css';
-import {Link} from 'react-router-dom'
+import {Link, Navigate} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -35,54 +36,55 @@ export default function Test() {
     const [namee, setName] = useState('');
     const [na, setNa] = useState('');
     const [des, setDes] = useState('');
-    const [d, setD] = useState('');
+    const [d, setD] = useState(0);
     const [street, setStreet] = useState('');
     const [cap, setCap] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
+    const [cost, setCost] = useState('');
+    const[done,setDone]= useState(null);
 
-    // useEffect(() => {
-    //     fetch("http://localhost:5000/admins")
-    // .then(response => response.text ())
-    // .then(text => {
-    //   try {
-    //       const data = JSON.parse(text);
-    //       setData(data)
-    //       console.log(data)
-         
-          
-    //       // Do your JSON handling here
-    //   } catch(err) {
-    //       console.log(err)
-    //      // It is text, do you text handling here
-    //   }
-    // })
-
-    // },[])
+   
 
 
     function handleSubmit(e) { 
         e.preventDefault()
+        var myParams ={
+          'property_name': namee,
+          'owner_email': email,
+          'description': des,
+          'capacity': cap,
+          'cost': cost,
+          'street': street,
+          'state': state,
+          'zip': zip,
+          'nearest_airport_id':na,
+          'dist_to_airport': d,
+          'city':city
+
+      } 
+    
+      console.log(myParams)
+  
+      if (myParams !== "") {
+          axios.post('http://localhost:5000/ap', myParams)
+              .then(function(response){
+                  console.log(response);
+                  setDone(1)
+         //Perform action based on response
+          })
+          .catch(function(error){
+              console.log(error);
+         //Perform action based on error
+          });
+      }
   
   
-        // setPas(); setEm();
-        // console.log(email, password);
-  
-        // var em =[];
-        // var p =[];
-        // var emer, pser;
-        // {Array.isArray(data) && data.map(group => em.push(group.Email))};
-        // {Array.isArray(data) && data.map(group => p.push(group.Pass))};
-  
-        // {em.includes(email) ? emer =false: emer =(true)};
-        // {emer === false && (p[em.indexOf(email)] === password) === true  ? pser= (false) :pser = (true)};   
-        // console.log(emer,pser)
-        // setEm(emer)
-        // setPas(pser)
       };
   
 
+      if(done !== null) return <Navigate  to ={'/oh/'+email} state={{ email: email }}  />
 
 
     return (
@@ -144,6 +146,10 @@ export default function Test() {
                required
                value={zip}
                onChange={e => setZip(e.target.value)}/>
+               <TextField  label="Cost Per Night" variant="filled" type='number'
+               required
+               value={cost}
+               onChange={e => setCost(e.target.value)}/>
         </div>
         <div align = "center">
             {/* <Button className='biu' variant = 'text'>Cancel</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}

@@ -33,6 +33,7 @@ import OwnerRemProp from './components/Owner/OwnerRemProp'
 import RateCust from './components/Owner/RateCust'
 import InputProp from './components/Properties/InputProp';
 
+
 function App() {
   return (
     <Router>
@@ -45,7 +46,7 @@ function App() {
           <Route path="/vo/:id" element={<ViewOwn/>}/>
           <Route path="/val/:id" element={<ViewAirl/>}/>
           <Route path="/vap/:id" element={<ViewAp/>}/>
-          <Route path="/vf" element={<ViewFlights/>}/>
+          <Route path="/vf/:id" element={<ViewFlights/>}/>
           <Route path="/oh/:id" element={<OwnerHome/>}/>
           <Route path="/do/:id" element={<DeleteOwner/>}/>
           <Route path="/admins" element={<LogAd/>}/>

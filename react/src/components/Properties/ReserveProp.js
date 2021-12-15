@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import Table2 from "../Layout/Table2"
+import Table2 from "../Layout/Tablerp"
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/NavbarCust';
 import Button from '@mui/material/Button'
@@ -14,23 +14,16 @@ const comonscol = [
 function Dashboard() {
     const email = useLocation().state.email
     const [data,setData] = useState({})
-    const [data1,setData1] = useState({})
+    const[time,setTime]=useState()
 
     useEffect(() => {
         fetch("http://localhost:5000/rp")
     .then(response => response.text ())
     .then(text => {
       try {
-          const data = JSON.parse(text);
-          const data1 = JSON.parse(text);
-          setData1(data1)
-          var tz = new Set()
-          
-          {Array.isArray(data) && data.map(group =>  tz.add(group.airline))}
-
-          tz = [...tz]    
-        
-          {Array.isArray(data) && data.map(group => group.airline = tz.indexOf(group.airline))}
+          let data = JSON.parse(text);
+          setTime(data[0]['time'])
+          data = data.filter((group=> !group.time))
           setData(data)
           console.log(data)
           
@@ -49,7 +42,7 @@ function Dashboard() {
     return (
       <div>  <Navbar email = {email}/>
         <div className='container'style={{ marginTop: '5%'}}>
-      <Table2 col={comonscol} data={data} heading = "Reserve Property" filter= {false} />
+      <Table2 col={comonscol} data={data} heading ={"Reserve Property ---- "+(time)} filter= {false} email={email} />
 
         </div>
         <div align = "center">

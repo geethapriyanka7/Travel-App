@@ -4,9 +4,27 @@ import '../Customer/CustomerHome.css';
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/NavbarCust';
 import {Link} from 'react-router-dom'
+import axios from 'axios';
 
 export default function Test() {
     const email = useLocation().state.email
+
+    var myParams ={
+        'email':email
+    }
+
+    if (myParams !== "") {
+        axios.post('http://localhost:5000/ch', myParams)
+            .then(function(response){
+                console.log(response);
+       //Perform action based on response
+        })
+        .catch(function(error){
+            console.log(error);
+       //Perform action based on error
+        });
+    }
+
     return (
         <div> 
             <Navbar email = {email}/>
@@ -18,7 +36,9 @@ export default function Test() {
         <Link to={'/bf/'+email} state={{ email: email }}>
             <Button className='ki' variant='text'>Book Flight</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <Link to={'/cf/'+email} state={{ email: email }}>
-            <Button className='ki' variant='text'>Cancel Flights</Button></Link>
+            <Button className='ki' variant='text'>Cancel Flights</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <Link to={'/vf/'+email} state={{ email: email }}>
+            <Button className='ki' variant='text'>View Flights</Button></Link>
         </div>
         <div  align="center">
         <Link to={'/vp/'+email} state={{ email: email }}>

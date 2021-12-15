@@ -5,8 +5,30 @@ import { Button } from "@material-ui/core";
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import {Link, Navigate} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: theme.spacing(2),
+  
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '300px',
+      },
+      '& .MuiButtonBase-root': {
+        margin: theme.spacing(2),
+      },
+    },
+  }));
 
 const Table2 = props => {
+
+    
+    const classes = useStyles();
   const [gridData] = useState({
     data: props.data,
     columns: props.col,
@@ -22,7 +44,7 @@ const Table2 = props => {
   }, [gridData]);
 
   const [selectedRow, setSelectedRow] = useState(null);
-  const [rate, setRate] = useState('');
+  const [rate, setRate] = useState(0);
   const [done, setDone] = useState(null);
 
   const handleSubmit = e => {
@@ -31,18 +53,20 @@ const Table2 = props => {
       
   };
 
-  const handleDB =()=>{
+  const handleDB =(e)=>{
+    e.preventDefault()
+    // console.log(props.data[selectedRow])
     var myParams ={
-        'property_name': props.data[selectedRow].Property_Name,
-        'owner_email': props.email,
-        'customer_email': props.data[selectedRow].Customer_Email,
-        'score': parseInt(rate),
+        'email': email,
+        'flight_num' : props.data[selectedRow]['flight_id'],
+        'airline_name': props.data[selectedRow]['airline'],
+        'num_seats': rate,
     } 
   
-    console.log(myParams,parseInt(rate))
+    console.log(myParams)
 
     if (myParams !== "") {
-        axios.post('http://localhost:5000/orc', myParams)
+        axios.post('http://localhost:5000/bf', myParams)
             .then(function(response){
                 console.log(response);
                 setDone(1)
@@ -56,7 +80,7 @@ const Table2 = props => {
     
 };
 
-if(done !== null) return <Navigate  to ={'/oh/'+email} state={{ email: email }}  />
+if(done !== null) return <Navigate  to ={'/ch/'+email} state={{ email: email }}  />
 
   return (
 
@@ -95,20 +119,25 @@ if(done !== null) return <Navigate  to ={'/oh/'+email} state={{ email: email }} 
       {(selectedRow !== null)?
       <div>
           <br></br>
+        <form className={classes.root} onSubmit={handleDB}>  
        <TextField
-       label="Rating"
+       label="Count"
        variant="filled"
-       inputProps = {{pattern:"[1-5]{1}"}}
        required
+       type="number"
        value={rate}
        onChange={e => setRate(e.target.value)}/>
+        <TextField
+        disabled
+       label="Review"
+       variant="filled"
+       value= {parseInt(rate)*props.data[selectedRow]['seat_cost']}/>
         <br></br>
-      <Button type="submit" onClick={() => { handleDB() }} 
+      <Button type="submit"
       style={{ background: '#2E3B55', color: "white", width: "10%", marginTop:"2%"}}>
-          Submit
+          Book
         </Button> 
-        
-        </div>: 
+        </form></div>: 
         <h1></h1>}
       </div>
       </div> 
