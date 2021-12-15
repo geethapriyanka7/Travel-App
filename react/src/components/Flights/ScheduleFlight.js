@@ -4,10 +4,14 @@ import '../Flights/ScheduleFlight.css'
 import TextField from '@mui/material/TextField'
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/Navbar';
-import { Box } from '@material-ui/core';
+import {Link} from 'react-router-dom'
+
+
 
 export default function Test() {
-
+    const email = useLocation().state.email
+    console.log(email)
+    
     return (
         <div> <Navbar />
 
@@ -36,7 +40,8 @@ export default function Test() {
             <TextField id="filled-basic" label="Arrival Time" variant="filled" />
         </div>
         <div align = "center">
-            <Button className='ac' variant='text'>Back</Button>  
+        <Link to={'/ah/'+email} state={{ email: email }}>
+            <Button className='ac' variant='text'>Back</Button></Link> 
         </div>
         </div>
         )

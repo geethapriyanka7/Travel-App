@@ -5,8 +5,12 @@ import TextField from '@mui/material/TextField'
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Layout/Navbar';
 import { Box } from '@material-ui/core';
+import {Link} from 'react-router-dom'
 
 export default function Test() {
+    const email = useLocation().state.email
+    console.log(email)
+
 
     return (
         <div> <Navbar />
@@ -30,7 +34,8 @@ export default function Test() {
             </Box>
         </div>
         <div align = "center">
-            <Button className='ac' variant='text'>Back</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Link to={'/ah/'+email} state={{ email: email }}>
+            <Button className='ac' variant='text'>Back</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Button className='ac' variant = 'text'>Set Date</Button>  
         </div>
         </div>
