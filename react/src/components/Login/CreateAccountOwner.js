@@ -27,17 +27,17 @@ export default function Register(){
                 noValidate
                 autoComplete="off"
                 >
-                <TextField id="filled-basic" label="First Name" variant="filled" />
+                <TextField id="filled-basic" label="First Name" variant="filled" required/>
                 <br></br>
-                <TextField id="filled-basic" label="Last Name" variant="filled" />
+                <TextField id="filled-basic" label="Last Name" variant="filled" required/>
                 <br></br>
-                <TextField id="filled-basic" label="Email" variant="filled" />
+                <TextField id="filled-basic" label="Email" variant="filled" type="email" required/>
                 <br></br>
-                <TextField id="filled-basic" label="Password" variant="filled" />
+                <TextField id="filled-basic" label="Password" variant="filled" type="password" required/>
                 <br></br>
-                <TextField id="filled-basic" label="Confirm" variant="filled" />
+                <TextField id="filled-basic" label="Confirm" variant="filled" type="password" required/>
                 <br></br>
-                <TextField id="filled-basic" label="Phone Number" variant="filled" />
+                <TextField id="filled-basic" label="Phone Number" pattern="[0-9]{10}" type="number" variant="filled" required/>
                 <br></br>
             </Box>
 

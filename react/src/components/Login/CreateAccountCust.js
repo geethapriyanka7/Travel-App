@@ -42,13 +42,13 @@ export default function Register(){
         
 
                 <form className={classes.root} >
-                <TextField id="filled-basic" label="First Name" variant="filled" type="text"/>
-                <TextField id="filled-basic" label="Last Name" variant="filled" />
+                <TextField id="filled-basic" label="First Name" variant="filled" type="text" required/>
+                <TextField id="filled-basic" label="Last Name" variant="filled" required/>
                 <TextField id="filled-basic" label="Email" variant="filled" type="email" required/>
-                <TextField id="filled-basic" label="Password" variant="filled" type="password" />
-                <TextField id="filled-basic" label="Confirm" variant="filled" />
-                <TextField id="filled-basic" label="Phone Number" variant="filled" />
-                <TextField id="filled-basic" label="Card Number" variant="filled" />
+                <TextField id="filled-basic" label="Password" variant="filled" type="password" required/>
+                <TextField id="filled-basic" label="Confirm" variant="filled" type="password"required/>
+                <TextField id="filled-basic" label="Phone Number" pattern="[0-9]{10}" variant="filled" type="number" required/>
+                <TextField id="filled-basic" label="Card Number" variant="filled" pattern="[0-9]{16}" type="number" required/>
                 <TextField 
                 id="filled-basic" 
                 label="CVV" variant="filled" type="number"  inputProps={{ inputMode: 'numeric', pattern: '[0-9]{3}' }} />
