@@ -5,8 +5,30 @@ import { Button } from "@material-ui/core";
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import {Link, Navigate} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: theme.spacing(2),
+  
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '300px',
+      },
+      '& .MuiButtonBase-root': {
+        margin: theme.spacing(2),
+      },
+    },
+  }));
 
 const Table2 = props => {
+
+     
+  const classes = useStyles();
   const [gridData] = useState({
     data: props.data,
     columns: props.col,
@@ -31,7 +53,8 @@ const Table2 = props => {
       
   };
 
-  const handleDB =()=>{
+  const handleDB =(e)=>{
+    e.preventDefault()
     var myParams ={
         'property_name': props.data[selectedRow].Property_Name,
         'owner_email': props.email,
@@ -95,6 +118,7 @@ if(done !== null) return <Navigate  to ={'/oh/'+email} state={{ email: email }} 
       {(selectedRow !== null)?
       <div>
           <br></br>
+         <form className={classes.root} onSubmit={handleDB}>  
        <TextField
        label="Rating"
        variant="filled"
@@ -103,11 +127,11 @@ if(done !== null) return <Navigate  to ={'/oh/'+email} state={{ email: email }} 
        value={rate}
        onChange={e => setRate(e.target.value)}/>
         <br></br>
-      <Button type="submit" onClick={() => { handleDB() }} 
+      <Button type="submit" 
       style={{ background: '#2E3B55', color: "white", width: "10%", marginTop:"2%"}}>
           Submit
         </Button> 
-        
+        </form>
         </div>: 
         <h1></h1>}
       </div>
