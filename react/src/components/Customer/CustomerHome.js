@@ -15,20 +15,26 @@ export default function Test() {
         </div>
         
         <div align="center">
-            <Button className='ki' variant='text'>Book Flight</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button className='ki' variant='text'>Cancel Flights</Button>
+        <Link to={'/bf/'+email} state={{ email: email }}>
+            <Button className='ki' variant='text'>Book Flight</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Link to={'/cf/'+email} state={{ email: email }}>
+            <Button className='ki' variant='text'>Cancel Flights</Button></Link>
         </div>
         <div  align="center">
         <Link to={'/vp/'+email} state={{ email: email }}>
              <Button className='ge' variant='text'>View<br></br>Properties</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button className='ge' variant='text'>Reserve<br></br>Property</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button className='ge' variant='text'>Cancel<br></br>Reservation</Button>
+        <Link to={'/rp/'+email} state={{ email: email }}>
+            <Button className='ge' variant='text'>Reserve<br></br>Property</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Link to={'/ccp/'+email} state={{ email: email }}>
+            <Button className='ge' variant='text'>Cancel<br></br>Reservation</Button></Link>
         </div>
         <div  align="center">
-            <Button className='et' variant='text'>Review<br></br>Property</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Link to={'/crp/'+email} state={{ email: email }}>
+            <Button className='et' variant='text'>Review<br></br>Property</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Link to={'/inp/'+email} state={{ email: email }}>
             <Button className='et' variant='text'>View<br></br>Reservation</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button className='et' variant='text'>Rate<br></br>Owner</Button>
+        <Link to={'/cro/'+email} state={{ email: email }}>
+            <Button className='et' variant='text'>Rate<br></br>Owner</Button></Link>
         </div>
         </div>
         )
