@@ -299,14 +299,14 @@ def index12():
 def index13():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        pno, cc_number = data['phone_number']
+        pno = data['phone_number']
         pno = pno[:3] + '-' + pno[3:6] + '-' + pno[6:]
         cmd = "call register_owner('"+data['email']+"', '"+data['first_name']+"', '"+data['last_name']+"', '"+data['password']+"', '"+pno+"');"
         cur.execute(cmd)
-        #cur.fetchall()
+        cur.fetchall()
         mysql.connection.commit()
         cur.close()
-        return None
+        return str(cur.rowcount) 
 
 @app.route("/bf")
 @cross_origin()
