@@ -1,12 +1,34 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
 import Box from '@mui/material/Box';
+import { useLocation } from 'react-router-dom';
 import { Button } from "@material-ui/core";
 import axios from 'axios';
 import {Link, Navigate} from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: theme.spacing(2),
+
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '300px',
+    },
+    '& .MuiButtonBase-root': {
+      margin: theme.spacing(2),
+    },
+  },
+}));
 
 const Table2 = props => {
+
+  const classes = useStyles();
   const [gridData] = useState({
     data: props.data,
     columns: props.col,
@@ -95,6 +117,7 @@ return (
       {(selectedRow !== null)?
       <div>
           <br></br>
+        <form className={classes.root} onSubmit={handleDB}> 
        <TextField
        label="Rating"
        variant="filled"
@@ -104,10 +127,10 @@ return (
        value={rate}
        onChange={e => setRate(e.target.value)}/>
         <br></br>
-      <Button type="submit" onClick={() => { handleDB() }} 
+      <Button type="submit"  
       style={{ background: '#2E3B55', color: "white", width: "10%", marginTop:"2%"}}>
           Submit
-        </Button> </div>: 
+        </Button> </form></div>: 
         <h1></h1>}
       </div>
       </div> 
