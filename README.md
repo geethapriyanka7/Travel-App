@@ -16,7 +16,7 @@ The types of **users** in the system include:
 
  The system was implemented using a relational DBMS that supports standard SQL queries. A Fully Functional Application integrated with Database System and User Interface specification was developed by the team.  
 
- Key User interface features included displaying different data in a **dynamic** tabular format with the option to *search*, *sort* and *filter* based on column values. 
+ Key User interface features include displaying different data in a **dynamic** tabular format with the option to *search*, *sort* and *filter* based on column values. 
 
  
 
@@ -35,6 +35,11 @@ The types of **users** in the system include:
 ## Screenshots
 |||||
 |--|--|--|--|
+|![alt text](https://github.com/karved/Travel-App/blob/main/pics/home.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/login.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/cacc.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/ch.png)|
+|![alt text](https://github.com/karved/Travel-App/blob/main/pics/resp.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/vp.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/vf.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/bf.png)|
+|![alt text](https://github.com/karved/Travel-App/blob/main/pics/oh.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/rp.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/orc.png)|
+||![alt text](https://github.com/karved/Travel-App/blob/main/pics/ad-home.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/rf.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/sf.png)|
+|![alt text](https://github.com/karved/Travel-App/blob/main/pics/vc.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/vo.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/va.png)|![alt text](https://github.com/karved/Travel-App/blob/main/pics/vair.png)|
 
 
 ## Setup
