@@ -1,12 +1,8 @@
 from flask import Flask,request
-from flask.templating import render_template
 from flask_mysqldb import MySQL
-import os
 import simplejson as json
 from flask_cors import CORS, cross_origin
 from datetime import date
-
-# print(os.path.dirname(__file__)+"/")
 
 app = Flask(__name__)
 cors = CORS(app)
