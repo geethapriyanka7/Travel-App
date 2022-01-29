@@ -14,7 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = "Pri@12364"
+app.config['MYSQL_PASSWORD'] = "*****"
 app.config['MYSQL_DB'] = 'travel_reservation_service'
 
 time = date.today()
@@ -224,8 +224,8 @@ def indexrf():
 def indexrf1():
         cur = mysql.connection.cursor()
         data = request.get_json()
-        print(data['airline'],data['flight_id'], data['flight_date'])
-        cmd = "call remove_flight('"+(data['flight_id'])+"','"+ (data['airline'])+"','"+(data['flight_date'])+"');"
+        print(data['airline'],data['flight_id'], data['flight_date'], str(time))
+        cmd = "call remove_flight('"+(data['flight_id'])+"','"+ (data['airline'])+"','"+str(time)+"');"
         cur.execute(cmd)
         cur.fetchall()
         mysql.connection.commit()
