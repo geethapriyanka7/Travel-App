@@ -48,39 +48,39 @@ The types of **users** in the system include:
 
 2. Install [Node.js](https://nodejs.org/en/) if you haven't already.  
 
-3. Replace the MySQL User and Password credentials in ```/backend/app.py``` with your local MySQL credentials.
+3. Replace the MySQL User and Password credentials in ```/backend/app.py``` with your local MySQL credentials.  
 
-4. Open this repository on terminal. Navigate to [backend](https://github.com/karved/Travel-App/tree/main/backend) folder by typing ```cd backend```.
+4. Run the **SQL queries** for *Database creation*, *Views*, and *Stored Procedures* on the MySQL server. 
 
-5. Type (if mentioned above **python modules** are not installed)  
+5. Open this repository on terminal. Navigate to [backend](https://github.com/karved/Travel-App/tree/main/backend) folder by typing ```cd backend```.
+
+6. Type (if mentioned above **python modules** are not installed)  
 
    ```
    pip install Flask, flask-mysqldb, simplejson
    pip install -U flask-cors
    ``` 
    
-6. To run the backend,
+7. To run the backend,
    ```
     python app.py
    ```
 
-7. Navigate to [react](https://github.com/karved/Travel-App/tree/main/react) folder in terminal by typing
+8. Navigate to [react](https://github.com/karved/Travel-App/tree/main/react) folder in terminal by typing
     ```
     cd ..
     cd react
     ```
- 8. Install node_modules  
-
+ 9. Install node_modules  
     ```
     npm install 
     ```
-9. Begin the frontend web application by typing  
-
-   ```
+10. Begin the frontend web application by typing  
+    ```
     npm start 
-   ```  
+    ```
 
-10. All set.
+11. All set.
 
 
 ## Meet the Team 
